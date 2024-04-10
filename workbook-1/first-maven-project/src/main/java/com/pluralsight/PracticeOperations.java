@@ -31,24 +31,26 @@ public class PracticeOperations {
         double secondValue = 3.5693939343324;
         double thirdValue = 5.24324223332338;
 
-        double result = firstValue + thirdValue;
-        System.out.println(result + " " + "Adding first and third value");
-        result = secondValue - thirdValue;
-        System.out.println(result + " " + "Adding second and third value");
-        result = thirdValue * thirdValue;
-        System.out.println(result + " " + "Adding third value");
+        double result = firstValue + secondValue+ thirdValue;
+        System.out.println(result + " " + "adding");
 
-        double result2 = firstValue / secondValue / thirdValue;
+        result = firstValue - secondValue - thirdValue;
+        System.out.println(result + " " + "subtraction");
 
-        double finalResult = result2;
-        System.out.println(finalResult + " " + "Current final result after diving 3 variables");
+        result =firstValue * thirdValue * thirdValue;
+        System.out.println(result + " " + "multiplying");
 
-        finalResult += 10;
-        System.out.println(finalResult + " " + "Final result + 10");
-        finalResult += 100;
-        System.out.println(finalResult + " " + "Final result + 100");
-        finalResult += 1000;
-        System.out.println(finalResult + " " + "Final result + 1000");
+        result = firstValue / secondValue / thirdValue;
+        System.out.println(result + " " + "Current final result after diving 3 variables");
+
+        double accumulation = result + 10;
+        System.out.println(accumulation + " " + "Final result + 10");
+
+        accumulation += 100;
+        System.out.println(accumulation + " " + "Final result + 100");
+
+        accumulation += 1000;
+        System.out.println(accumulation + " " + "Final result + 1000");
 
     }
 
