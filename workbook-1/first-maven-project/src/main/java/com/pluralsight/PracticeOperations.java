@@ -37,7 +37,7 @@ public class PracticeOperations {
         result = firstValue - secondValue - thirdValue;
         System.out.println(result + " " + "subtraction");
 
-        result =firstValue * thirdValue * thirdValue;
+        result = firstValue * secondValue * thirdValue;
         System.out.println(result + " " + "multiplying");
 
         result = firstValue / secondValue / thirdValue;
