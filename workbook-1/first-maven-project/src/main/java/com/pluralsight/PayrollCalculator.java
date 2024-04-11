@@ -26,6 +26,5 @@ public class PayrollCalculator {
         }
         System.out.print("Hi " + name + ",");
         System.out.printf("your total pay for hours worked will be : \n $%.2f for this week.", totalPay);
-
     }
 }
