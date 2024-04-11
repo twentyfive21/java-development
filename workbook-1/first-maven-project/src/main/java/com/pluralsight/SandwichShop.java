@@ -38,7 +38,13 @@ public class SandwichShop {
         } else if (itemSize.equals("large")){
             total = isLoaded.equals("yes") ? total + loadedLarge : total;
         }
-        total = age <= 17 ? total * youngDiscount : total * oldDiscount;
+
+        // see if the user gets a discount
+        if (age <= 17) {
+            total *= youngDiscount;
+        } else if ( age >= 65) {
+            total *= oldDiscount;
+        }
         displayTotal(total);
     }
 
