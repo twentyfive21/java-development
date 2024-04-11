@@ -13,9 +13,19 @@ public class PayrollCalculator {
         System.out.print("Please provide your pay rate : ");
         double payRate = scanner.nextDouble();
 
-        double totalPay = hoursWorked * payRate;
-        System.out.println("Hi " + name + ",");
-        System.out.println("Your total pay for hours worked will be : " + "$"+ String.format("%.2f",totalPay));
+        double totalPay;
+        double overTime;
+        if (hoursWorked > 40) {
+            double otPayRate = payRate * 1.5;
+            overTime = hoursWorked - 40;
+            totalPay = payRate * 40;
+            double otPayToAdd = overTime * otPayRate;
+            totalPay += otPayToAdd;
+        } else {
+            totalPay = hoursWorked * payRate;
+        }
+        System.out.print("Hi " + name + ",");
+        System.out.printf("your total pay for hours worked will be : \n $%.2f for this week.", totalPay);
 
     }
 }
