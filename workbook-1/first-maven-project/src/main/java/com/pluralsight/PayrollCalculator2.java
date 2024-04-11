@@ -10,6 +10,11 @@ public class PayrollCalculator2 {
     public static void main(String[] args) {
         System.out.println(" ");
         System.out.print("Hi I am here to help calculate your pay. Please provide your name : ");
+        setUserInput();
+    }
+
+    // asking user for input
+    public static void setUserInput () {
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
         System.out.print("Please provide your hours worked : ");
@@ -19,7 +24,6 @@ public class PayrollCalculator2 {
         payRate = scanner.nextDouble();
         calculatePay();
     }
-
     // method calculating pay
     public static void calculatePay () {
         double overTime;
