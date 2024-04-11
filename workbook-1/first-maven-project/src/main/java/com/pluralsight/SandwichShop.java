@@ -21,6 +21,7 @@ public class SandwichShop {
         String itemSize = scanner.nextLine();
         System.out.print("How old are you? ");
         int age = scanner.nextInt();
+        // clears out CRLF which is the enter key left in input buffer after int
         scanner.nextLine();
         calculatePrice(age, itemSize, scanner);
     }
