@@ -74,7 +74,7 @@ public class FinancialCalculators {
     public static void getPresentValues (Scanner scanner) {
         // attempting to get user input values
         try {
-            System.out.println("You have selected the future value calculator.");
+            System.out.println("You have selected the present value calculator.");
             System.out.print("Please provide the monthly amount : ");
             double monthly = scanner.nextDouble();
             System.out.print("Please provide the interest amount : ");
@@ -121,7 +121,6 @@ public class FinancialCalculators {
         // n = number of times interest is compounded per year (typically 365 for daily, 12 for monthly, 4 for quarterly)
         double interestRate = interest / 100;
         int number = 365;
-        System.out.println("You have selected the future value calculator");
             // double interestRate = 1.75 / 100; // Annual interest rate (as a decimal)
         double nt = number * time;
         // full balance calculation
@@ -134,7 +133,6 @@ public class FinancialCalculators {
 
     // present value calculator
     public static void presentValueCalculator (double monthly, double interest, double periods) {
-        System.out.println("You have selected the present value calculator");
         // convert the years into monthly payments
         double periodConverted = periods * 12;
         // divide by 12000 to get the monthly interest rate
