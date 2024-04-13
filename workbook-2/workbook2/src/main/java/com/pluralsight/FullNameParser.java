@@ -49,6 +49,7 @@ public class FullNameParser {
             System.out.printf("Last name: %s \n", splitName[2]);
         } else {
             System.out.printf("First name: %s \n", splitName[0]);
+            System.out.println("Middle name: (none)");
             System.out.printf("Last name: %s \n", splitName[1]);
         }
         System.out.println("Thank you and come again ! ");
