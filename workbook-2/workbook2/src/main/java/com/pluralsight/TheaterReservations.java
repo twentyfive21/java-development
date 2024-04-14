@@ -30,12 +30,17 @@ public class TheaterReservations {
     // format values
     public static void formatReservations (String fullName, String date, int tickets) {
 
+        if (tickets > 1) {
+            System.out.printf("%d tickets reserved for ", tickets);
+        } else {
+            System.out.printf("%d ticket reserved for ", tickets);
+        }
         String userInput;
         DateTimeFormatter formatter;
         userInput = date;
         formatter = DateTimeFormatter.ofPattern("M/dd/yyyy");
         LocalDate reservation = LocalDate.parse(userInput, formatter);
-        System.out.println(reservation);
+        System.out.print(reservation);
 
     }
 }
