@@ -30,11 +30,14 @@ public class TheaterReservations {
     // format values
     public static void formatReservations (String fullName, String date, int tickets) {
 
+        // format the tickets
         if (tickets > 1) {
             System.out.printf("%d tickets reserved for ", tickets);
         } else {
             System.out.printf("%d ticket reserved for ", tickets);
         }
+
+        // format the date
         String userInput;
         DateTimeFormatter formatter;
         userInput = date;
@@ -42,5 +45,11 @@ public class TheaterReservations {
         LocalDate reservation = LocalDate.parse(userInput, formatter);
         System.out.print(reservation);
 
+        String space = " ";
+        // split the string at each space and return into the splitName array
+        String[] splitName = fullName.split(space);
+        String firstName = splitName[1].substring(0,1).toUpperCase() + splitName[1].substring(1);
+        String lastName = splitName[0].substring(0,1).toUpperCase() + splitName[0].substring(1);
+        System.out.printf(" under %s, %s", lastName, firstName);
     }
 }
