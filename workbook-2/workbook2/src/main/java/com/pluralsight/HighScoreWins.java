@@ -3,12 +3,10 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class HighScoreWins {
-
     // main method
     public static void main(String[] args) {
         getScoreInfo();
     }
-
     // get user input method
     public static void getScoreInfo () {
         Scanner scanner = new Scanner(System.in);
@@ -16,7 +14,6 @@ public class HighScoreWins {
         String fullMatch = scanner.nextLine();
         formatMatch(fullMatch);
     }
-
     public static void formatMatch (String fullMatch) {
         // declare String[] to format team comparisons
         String[] teams;
@@ -37,7 +34,6 @@ public class HighScoreWins {
         // send to last method to check & display winner
         checkWinner(teamOne, teamTwo, teamOneScore, teamTwoScore);
     }
-
     // check winner method
     public static void checkWinner (String teamOne,String teamTwo,int teamOneScore,int teamTwoScore) {
         if (teamOneScore > teamTwoScore) {

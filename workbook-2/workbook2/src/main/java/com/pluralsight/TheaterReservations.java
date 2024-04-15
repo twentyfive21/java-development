@@ -4,12 +4,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class TheaterReservations {
-
     // main method
     public static void main(String[] args) {
         getUserInput();
     }
-
     // get user input
     public static void getUserInput () {
         // name Johnson, Geri
@@ -26,17 +24,14 @@ public class TheaterReservations {
         scanner.nextLine();
         formatReservations(fullName, date, tickets);
     }
-
     // format values
     public static void formatReservations (String fullName, String date, int tickets) {
-
         // format the tickets
         if (tickets > 1) {
             System.out.printf("%d tickets reserved for ", tickets);
         } else {
             System.out.printf("%d ticket reserved for ", tickets);
         }
-
         // format the date
         String userInput;
         DateTimeFormatter formatter;

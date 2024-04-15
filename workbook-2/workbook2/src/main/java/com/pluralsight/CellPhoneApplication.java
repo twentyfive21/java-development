@@ -45,5 +45,4 @@ public class CellPhoneApplication {
         System.out.printf("Phone number: %s \n", currentUser.getPhoneNumber());
         System.out.printf("Owner: %s \n", currentUser.getOwner());
     }
-
 }
