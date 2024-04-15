@@ -4,29 +4,41 @@ import java.util.Scanner;
 public class CellPhoneApplication {
     public static void main(String[] args) {
         CellPhone firstUser = new CellPhone();
+        CellPhone secondUser = new CellPhone();
+        getUserInput(firstUser);
+        getUserInput(secondUser);
+        displayUserData(firstUser);
+        displayUserData(secondUser);
+        firstUser.dial(secondUser.getPhoneNumber());
+        secondUser.dial(firstUser.getPhoneNumber());
+    }
+
+    public static void getUserInput (CellPhone currentUser) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("What is the serial number? ");
-        firstUser.setSerialNumber(scanner.nextInt());
+        currentUser.setSerialNumber(scanner.nextInt());
         // clear leftover in the buffer
         scanner.nextLine();
         System.out.print("What model is the phone? ");
-        firstUser.setModel(scanner.nextLine());
+        currentUser.setModel(scanner.nextLine());
         System.out.print("Who is the carrier? ");
-        firstUser.setCarrier(scanner.nextLine());
+        currentUser.setCarrier(scanner.nextLine());
         System.out.print("What is the phone number? ");
-        firstUser.setPhoneNumber(scanner.nextLine());
+        currentUser.setPhoneNumber(scanner.nextLine());
         System.out.print("Who is the owner of the phone? ");
-        firstUser.setOwner(scanner.nextLine());
+        currentUser.setOwner(scanner.nextLine());
         // new line for spacing
         System.out.println();
-
-        // get back data from the class
-        System.out.printf("Serial number: %d \n",firstUser.getSerialNumber());
-        System.out.printf("Phone model: %s \n", firstUser.getModel());
-        System.out.printf("Carrier: %s \n", firstUser.getCarrier());
-        System.out.printf("Phone number: %s \n", firstUser.getPhoneNumber());
-        System.out.printf("Owner: %s \n", firstUser.getOwner());
-
     }
+
+    public static void displayUserData (CellPhone currentUser) {
+        // get back data from the class
+        System.out.printf("Serial number: %d \n",currentUser.getSerialNumber());
+        System.out.printf("Phone model: %s \n", currentUser.getModel());
+        System.out.printf("Carrier: %s \n", currentUser.getCarrier());
+        System.out.printf("Phone number: %s \n", currentUser.getPhoneNumber());
+        System.out.printf("Owner: %s \n", currentUser.getOwner());
+    }
+
 }
