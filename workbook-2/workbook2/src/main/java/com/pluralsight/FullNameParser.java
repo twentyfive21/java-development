@@ -2,12 +2,10 @@ package com.pluralsight;
 import java.util.Scanner;
 
 public class FullNameParser {
-
     // main method
     public static void main(String[] args) {
         getUserInfo();
     }
-
     //get users info method
     public static void getUserInfo () {
         Scanner scanner = new Scanner(System.in);
@@ -21,13 +19,11 @@ public class FullNameParser {
             formatName(fullName);
         }
     }
-
     //  display the users information method
     public static void formatName (String fullName) {
         String space = " ";
         // split the string at each space and return into the splitName array
         String[] splitName = fullName.split(space);
-
         // declare variables and set middle name to default if none is given
         if (splitName.length == 3) {
             splitName[0] = splitName[0].substring(0,1).toUpperCase() + splitName[0].substring(1);
@@ -40,7 +36,6 @@ public class FullNameParser {
         // call display name method with values
         displayName(splitName);
     }
-
     public static void displayName (String[] splitName) {
         System.out.println("Here is your name split ! ");
         if (splitName.length == 3) {
@@ -54,5 +49,4 @@ public class FullNameParser {
         }
         System.out.println("Thank you and come again ! ");
     }
-
 }
