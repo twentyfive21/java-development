@@ -6,7 +6,6 @@ public class FullNameApplication {
     // main method
     public static void main(String[] args) {
         getUserInfo();
-
     }
 
     // getting user input
@@ -17,24 +16,28 @@ public class FullNameApplication {
         System.out.print("First name: ");
         String firstName = scanner.nextLine().trim();
         System.out.print("Middle name: ");
-        // gets first letter for middle name only
         String middleName = scanner.nextLine().trim();
         System.out.print("Last name: ");
         String lastName = scanner.nextLine().trim();
         System.out.print("Suffix : ");
         String suffix = scanner.nextLine().trim();
-        formatName(firstName, middleName, lastName, suffix);
+
+        // handle error if first and last name are not provided
+        if(firstName.isEmpty() || lastName.isEmpty()) {
+            System.out.println("Error must provide a first and last name!");
+            getUserInfo();
+        } else {
+            formatName(firstName, middleName, lastName, suffix);
+        }
     }
 
-    public static void formatName ( String firstName, String middleName, String lastName, String suffix) {
+    public static void formatName (String firstName,String middleName,String lastName,String suffix) {
         // create String array to loop over
         String[] usersInfo= {firstName, middleName, lastName, suffix};
-
         // get only first letter of muddle name if it exists
         if (!usersInfo[1].isEmpty()) {
             usersInfo[1] = usersInfo[1].substring(0, 1);
         }
-
         // uppercase the first letter of each word
         for (int i = 0; i < usersInfo.length; i++) {
             if(!usersInfo[i].isEmpty()) {
@@ -47,7 +50,6 @@ public class FullNameApplication {
 
     // displaying users inputted name
     public static void displayName (String firstName, String middleName, String lastName, String suffix) {
-
         String space = " ";
         String firstLast = firstName + space + lastName;
         String noMiddle = firstName + space + lastName + ", " + suffix;
