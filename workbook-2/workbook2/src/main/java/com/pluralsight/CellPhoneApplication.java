@@ -5,12 +5,17 @@ public class CellPhoneApplication {
     public static void main(String[] args) {
         CellPhone firstUser = new CellPhone();
         CellPhone secondUser = new CellPhone();
+        CellPhone thirdUser = new CellPhone(3,"apple","Verizon","800-222-2222","owner 3");
         getUserInput(firstUser);
         getUserInput(secondUser);
         displayUserData(firstUser);
         displayUserData(secondUser);
+        displayUserData(thirdUser);
+        // passing using getter and setter
         firstUser.dial(secondUser.getPhoneNumber());
         secondUser.dial(firstUser.getPhoneNumber());
+        // overloaded method for dial passing the class
+        thirdUser.dial(firstUser);
     }
 
     public static void getUserInput (CellPhone currentUser) {
