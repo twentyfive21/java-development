@@ -10,7 +10,7 @@ public class VehicleInventory {
         setArray(carsArray);
         getUserInfo(carsArray);
     }
-    // pre-set the array with 6 values
+    // ~~~~~~~~~~~~~~ pre-set the array with 6 values ~~~~~~~~~~~~~~~
     public static void setArray (Vehicle[] carsArray) {
         carsArray[0] = new Vehicle(101121,"Ford Explorer",
                 "Red",45000,13500);
@@ -25,7 +25,7 @@ public class VehicleInventory {
         carsArray[5] = new Vehicle(101126,"Jeep Wrangler",
                 "Yellow",30000,16000);
     }
-    // get users car information
+    // ~~~~~~~~~ get users car information ~~~~~~~~
     public static void getUserInfo(Vehicle[] carsArray) {
         Scanner scanner = new Scanner(System.in);
         String[] options = {"\n What do you want to do?"," 1 - List all vehicles", " 2 - Search by make/model",
@@ -35,18 +35,18 @@ public class VehicleInventory {
         }
         System.out.print("Enter your command: ");
         int selection = scanner.nextInt();
-        // TODO 1,2,5 first
-        // TODO  1 - List all vehicles
+        scanner.nextLine();
+        // TODO 2,5 first
         // TODO  2 - Search by make/model
         // TODO  3 - Search by price range
         // TODO 4 - Search by color
         // TODO 5 - Add a vehicle
 
-        // cases to call based on users choice
+        // ~~~~ cases to call based on users choice ~~~~
         switch (selection) {
             case 1 : listCars(carsArray);
             break;
-            case 2: System.out.print("searchByType");
+            case 2: searchfor(carsArray, scanner);
             break;
             case 3: System.out.print("searchByPrice");
             break;
@@ -56,23 +56,38 @@ public class VehicleInventory {
             break;
             case 6: quitProgram();
             break;
-            default: getUserInfo(carsArray);
+            default: System.out.println("Error please pick a valid option!");
+                    getUserInfo(carsArray);
         }
         // clear buffer for next input
-        scanner.nextLine();
     }
-
+    // ~~~~~~~~~~~ quit program method ~~~~~
     public static void quitProgram() {
         System.out.println("You have chosen to leave. \n" +
                 "Please come again and we hope you enjoyed our services!");
         System.out.println("Have a nice day! :)");
     }
-
+    // ~~~~~~~~~~~ list all cars method ~~~~
     public static void listCars(Vehicle[] carsArray) {
         System.out.println("You have selected the all vehicles option: ");
+        // if vehicle is null do not display
         for (Vehicle vehicle : carsArray) {
             if (vehicle != null) {
                 System.out.println(vehicle);
+            }
+        }
+    }
+    // ~~~~~~~~~~ search for make and model method ~~~~~
+    public static void searchfor(Vehicle[] carsArray, Scanner scanner){
+        System.out.print("Provide the make/model: ");
+
+        String searchInput = scanner.nextLine().toLowerCase();
+        searchInput= searchInput.trim();
+        System.out.println(searchInput);
+        for (int i = 0; i < carsArray.length; i++) {
+            if (carsArray[i] != null &&
+                    carsArray[i].getMakeModel().toLowerCase().contains(searchInput)) {
+                    System.out.println(carsArray[i]);
             }
         }
     }
