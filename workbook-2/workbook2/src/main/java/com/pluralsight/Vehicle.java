@@ -7,7 +7,8 @@ public class Vehicle {
     private int odometerReading;
     private float price;
 
-    public Vehicle (long vehicleId, String makeModel, String color, int odometerReading, float price){
+    public Vehicle (long vehicleId, String makeModel, String color, int odometerReading,
+                    float price){
         this.vehicleId = vehicleId;
         this.makeModel = makeModel;
         this.color = color;
@@ -55,5 +56,13 @@ public class Vehicle {
         this.price = price;
     }
 
+    // overiding toString as a class into String format to readable string
+    public String toString(){
+        return "\nMake/Model: " + makeModel +
+                "\nVehicleId: " + vehicleId +
+                "\nColor: " + color +
+                "\nOdometer reading: "+  odometerReading +
+                "\nPrice: $" +price;
+    }
 }
 

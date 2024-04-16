@@ -3,7 +3,6 @@ package com.pluralsight;
 public class CellPhone {
     // set class to private for encapsulation to modify only using setter and getters
     // private String owner;
-
     int serialNumber;
     String model;
     String carrier;

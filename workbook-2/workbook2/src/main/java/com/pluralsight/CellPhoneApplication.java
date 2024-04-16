@@ -5,7 +5,8 @@ public class CellPhoneApplication {
     public static void main(String[] args) {
         CellPhone firstUser = new CellPhone();
         CellPhone secondUser = new CellPhone();
-        CellPhone thirdUser = new CellPhone(3,"apple","Verizon","800-222-2222","owner 3");
+        CellPhone thirdUser = new CellPhone(3,"apple",
+                "Verizon","800-222-2222","owner 3");
         getUserInput(firstUser);
         getUserInput(secondUser);
         displayUserData(firstUser);
@@ -20,7 +21,6 @@ public class CellPhoneApplication {
 
     public static void getUserInput (CellPhone currentUser) {
         Scanner scanner = new Scanner(System.in);
-
         System.out.print("What is the serial number? ");
         currentUser.setSerialNumber(scanner.nextInt());
         // clear leftover in the buffer
@@ -36,7 +36,6 @@ public class CellPhoneApplication {
         // new line for spacing
         System.out.println();
     }
-
     public static void displayUserData (CellPhone currentUser) {
         // get back data from the class
         System.out.printf("Serial number: %d \n",currentUser.getSerialNumber());
