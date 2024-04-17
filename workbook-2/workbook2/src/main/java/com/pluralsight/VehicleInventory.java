@@ -36,23 +36,19 @@ public class VehicleInventory {
         System.out.print("Enter your command: ");
         int selection = scanner.nextInt();
         scanner.nextLine();
-        // TODO 2,5 first
-        // TODO  2 - Search by make/model
-        // TODO  3 - Search by price range
+        // TODO 3 - Search by price range
         // TODO 4 - Search by color
-        // TODO 5 - Add a vehicle
-
         // ~~~~ cases to call based on users choice ~~~~
         switch (selection) {
             case 1 : listCars(carsArray);
             break;
-            case 2: searchfor(carsArray, scanner);
+            case 2: searchMake(carsArray, scanner);
             break;
             case 3: System.out.print("searchByPrice");
             break;
             case 4: System.out.print("searchByColor");
             break;
-            case 5: System.out.print("addVehicle");
+            case 5: addVehicle(carsArray, scanner);
             break;
             case 6: quitProgram();
             break;
@@ -77,13 +73,12 @@ public class VehicleInventory {
             }
         }
     }
-    // ~~~~~~~~~~ search for make and model method ~~~~~
-    public static void searchfor(Vehicle[] carsArray, Scanner scanner){
+    // ~~~~~~~~~~ search for make and model method ~~~~~~~~~~~~~
+    public static void searchMake(Vehicle[] carsArray, Scanner scanner){
         System.out.print("Provide the make/model: ");
-
         String searchInput = scanner.nextLine().toLowerCase();
         searchInput= searchInput.trim();
-        System.out.println(searchInput);
+        // search for matching vehicle type and do not put null values
         for (int i = 0; i < carsArray.length; i++) {
             if (carsArray[i] != null &&
                     carsArray[i].getMakeModel().toLowerCase().contains(searchInput)) {
@@ -91,5 +86,26 @@ public class VehicleInventory {
             }
         }
     }
-
+    // ~~~~~~~~~~ add vehicle method ~~~~~~~~~~~~~~~~
+    public static void addVehicle(Vehicle[] carsArray, Scanner scanner){
+        System.out.print("Please provide the vehicleId: ");
+        int inputId = scanner.nextInt();
+        System.out.print("Please provide the odometer reading: ");
+        int odometer = scanner.nextInt();
+        System.out.print("Please provide the price: ");
+        int price = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Please provide the make then model: ");
+        String type = scanner.nextLine();
+        System.out.print("Please provide the color: ");
+        String car = scanner.nextLine();
+        int indexToSet = amountOfCars;
+        if (amountOfCars < 20);{
+            carsArray[indexToSet] = new Vehicle(inputId,type,car,odometer,price);
+        }
+        amountOfCars++;
+        listCars(carsArray);
+        System.out.println("\n!!!! Vehicle added to list!!!!!");
+    }
+    // ~~~~~~~~~~ add vehicle method ~~~~~~~~~~~~~~~~
 }
