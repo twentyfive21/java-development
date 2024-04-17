@@ -15,7 +15,7 @@ public class VehicleInventory {
         carsArray[0] = new Vehicle(101121,"Ford Explorer",
                 "Red",45000,13500);
         carsArray[1] = new Vehicle(101122,"Toyota Camry",
-                "Blue",60000,11000);
+                "Pink",60000,11000);
         carsArray[2] = new Vehicle(101123,"Chevrolet Malibu",
                 "Black",50000,9700);
         carsArray[3] = new Vehicle(101124,"Honda Civic",
