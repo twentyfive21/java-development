@@ -28,41 +28,34 @@ public class VehicleInventory {
     // ~~~~~~~~~ get users car information ~~~~~~~~
     public static void getUserInfo(Vehicle[] carsArray) {
         Scanner scanner = new Scanner(System.in);
-        String[] options = {"\n What do you want to do?"," 1 - List all vehicles", " 2 - Search by make/model",
-        " 3 - Search by price range", " 4 - Search by color"," 5 - Add a vehicle", " 6 - Quit \n"};
+        String[] options = {"\n What do you want to do?"," 1 - List all vehicles",
+                " 2 - Search by make/model", " 3 - Search by price range",
+                " 4 - Search by color"," 5 - Add a vehicle", " 6 - Quit \n"};
         for (String option : options) {
             System.out.println(option);
         }
         System.out.print("Enter your command: ");
         int selection = scanner.nextInt();
         scanner.nextLine();
-        // TODO 3 - Search by price range
-        // TODO 4 - Search by color
         // ~~~~ cases to call based on users choice ~~~~
         switch (selection) {
             case 1 : listCars(carsArray);
-            break;
-            case 2: searchMake(carsArray, scanner);
-            break;
-            case 3: System.out.print("searchByPrice");
-            break;
-            case 4: System.out.print("searchByColor");
-            break;
+                    break;
+            case 2:
+            case 3:
+            case 4:
+                    searchList(carsArray, scanner, selection);
+                    break;
             case 5: addVehicle(carsArray, scanner);
-            break;
+                    break;
             case 6: quitProgram();
-            break;
+                    break;
             default: System.out.println("Error please pick a valid option!");
                     getUserInfo(carsArray);
         }
         // clear buffer for next input
     }
-    // ~~~~~~~~~~~ quit program method ~~~~~
-    public static void quitProgram() {
-        System.out.println("You have chosen to leave. \n" +
-                "Please come again and we hope you enjoyed our services!");
-        System.out.println("Have a nice day! :)");
-    }
+
     // ~~~~~~~~~~~ list all cars method ~~~~
     public static void listCars(Vehicle[] carsArray) {
         System.out.println("You have selected the all vehicles option: ");
@@ -72,19 +65,53 @@ public class VehicleInventory {
                 System.out.println(vehicle);
             }
         }
+        // run program again
+        runProgramAgain(carsArray);
     }
+
     // ~~~~~~~~~~ search for make and model method ~~~~~~~~~~~~~
-    public static void searchMake(Vehicle[] carsArray, Scanner scanner){
-        System.out.print("Provide the make/model: ");
-        String searchInput = scanner.nextLine().toLowerCase();
-        searchInput= searchInput.trim();
-        // search for matching vehicle type and do not put null values
-        for (int i = 0; i < carsArray.length; i++) {
-            if (carsArray[i] != null &&
-                    carsArray[i].getMakeModel().toLowerCase().contains(searchInput)) {
-                    System.out.println(carsArray[i]);
+    public static void searchList(Vehicle[] carsArray, Scanner scanner, int selection) {
+        // handles all 3 cases instead of creating 3 separate methods
+            switch (selection) {
+                case 2:
+                    System.out.print("Provide the make/model: ");
+                    String searchInput = scanner.nextLine().toLowerCase().trim();
+                    for (int i = 0; i < carsArray.length; i++) {
+                        if (carsArray[i] != null &&
+                                carsArray[i].getMakeModel().toLowerCase().contains(searchInput)) {
+                            System.out.println(carsArray[i]);
+                        }
+                    }
+                    break;
+                case 3:
+                    System.out.print("Provide the price: \n");
+                    System.out.print("Provide the minimum price: ");
+                    int min = scanner.nextInt();
+                    System.out.print("Provide the maximum price: ");
+                    int max = scanner.nextInt();
+                    scanner.nextLine();
+                    for (int i = 0; i < carsArray.length; i++) {
+                        if (carsArray[i] != null) {
+                            float priceToCheck = carsArray[i].getPrice();
+                            if (priceToCheck >= min && priceToCheck <= max) {
+                                System.out.println(carsArray[i]);
+                            }
+                        }
+                    }
+                    break;
+                case 4:
+                    System.out.print("Provide the color: ");
+                    String color = scanner.nextLine().toLowerCase().trim();
+                    for (int i = 0; i < carsArray.length; i++) {
+                        if (carsArray[i] != null &&
+                                carsArray[i].getColor().toLowerCase().contains(color)) {
+                            System.out.println(carsArray[i]);
+                        }
+                    }
+                    break;
             }
-        }
+            // run program again
+            runProgramAgain(carsArray);
     }
     // ~~~~~~~~~~ add vehicle method ~~~~~~~~~~~~~~~~
     public static void addVehicle(Vehicle[] carsArray, Scanner scanner){
@@ -106,6 +133,20 @@ public class VehicleInventory {
         amountOfCars++;
         listCars(carsArray);
         System.out.println("\n!!!! Vehicle added to list!!!!!");
+        // run program again
+        runProgramAgain(carsArray);
     }
-    // ~~~~~~~~~~ add vehicle method ~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~ run program method  ~~~~~
+    // allows user to interact more without having to keep re-running the program
+    public static void runProgramAgain(Vehicle[] carsArray){
+        System.out.println("\nThank you for your selection today!");
+        System.out.println("Would you like to do anything else today? ");
+        getUserInfo(carsArray);
+    }
+    // ~~~~~~~~~~~ quit program method ~~~~~
+    public static void quitProgram() {
+        System.out.println("\nYou have chosen to leave. \n" +
+                "Please come again and we hope you enjoyed our services!");
+        System.out.println("Have a nice day! :)");
+    }
 }
