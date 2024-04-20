@@ -29,7 +29,7 @@ public class FamousQuotes {
             System.out.print("Select a number between 1 - 10! ");
             System.out.print("Or select (r) for a random quote! : ");
             String choice = scanner.nextLine();
-            // type caste random num returned from math.random
+            // type cast random num returned from math.random
             // this func returns a double you must do (int) to resolve issue
             if (choice.equalsIgnoreCase("r")){
                 int randomNum = (int)(Math.random() * 10) + 1;
@@ -53,6 +53,5 @@ public class FamousQuotes {
                     getUserInput(quotes);
                     break;
         }
-
     }
 }
