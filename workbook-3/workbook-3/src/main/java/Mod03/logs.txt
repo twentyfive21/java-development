@@ -1,0 +1,7 @@
+2024-04-22 14:52:23 First launching the application
+2024-04-22 14:52:23 User chose to launch the application
+2024-04-22 14:52:23 search: cute cats
+2024-04-22 14:52:23 search: best desserts
+2024-04-22 14:52:23 search: quizzes to test yourself
+2024-04-22 14:52:23 search: how to cut an onion?
+2024-04-22 14:52:23 Exit
