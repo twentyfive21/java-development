@@ -1,7 +1,8 @@
-2024-04-22 14:52:23 First launching the application
-2024-04-22 14:52:23 User chose to launch the application
-2024-04-22 14:52:23 search: cute cats
-2024-04-22 14:52:23 search: best desserts
-2024-04-22 14:52:23 search: quizzes to test yourself
-2024-04-22 14:52:23 search: how to cut an onion?
-2024-04-22 14:52:23 Exit
+2024-04-22 15:13:13 First launching the application
+2024-04-22 15:13:16 User chose to launch the application
+2024-04-22 15:13:26 search: how long to boil eggs?
+2024-04-22 15:13:43 search: java best practices
+2024-04-22 15:14:11 search: beaches to visit
+2024-04-22 15:14:16 search: cute animals
+2024-04-22 15:14:29 search: fries near me
+2024-04-22 15:14:30 Exit
