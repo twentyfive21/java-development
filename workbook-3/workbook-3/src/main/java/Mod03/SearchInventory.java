@@ -58,7 +58,7 @@ public class SearchInventory {
     // ~~~~~~~~~~~~~ get user input method ~~~~~~~~~~~~~~~~~~~
     public static void getUserInput(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("~~~~~~~ Welcome to my store! ~~~~~~~");
+        System.out.println("\n~~~~~~~ Welcome to my store! ~~~~~~~");
         System.out.print("What do you want to do?\n" +
                 "1-List all products\n" +
                 "2-Lookup a product by its id\n" +
@@ -101,12 +101,26 @@ public class SearchInventory {
     }
     // ~~~~~~~~~~~~~ case 2 get product by id method ~~~~~~~~~~~~~~~~~~~~
     public static void getProductById(Scanner scanner) {
+        boolean found = false;
         System.out.print("Please provide the product ID number: ");
         int input = scanner.nextInt();
         // clear leftover in buffer from int
         scanner.nextLine();
-
-
+        ArrayList<Product> inventory = getInventory();
+        // to access an element at a specific index in an ArrayList (or any List implementation),
+        for (int i = 0; i < inventory.size(); i++){
+            if (input == inventory.get(i).getId()){
+                // .get(i) method. This returns the element at the specified index in the list.
+                // vs in normal arrays you do inventory[i]. Array lists use .get()!
+                System.out.println("\nHere is the item you searched for: \n");
+                System.out.println(inventory.get(i));
+                found = true;
+            }
+        }
+        if (!found){
+            System.out.printf("\nError the id : %d does not match any of our items! :(\n", input);
+        }
+        getUserInput();
     }
     // ~~~~~~~~~~~~~ case 5 get quit program method ~~~~~~~~~~~~~~~~~~~~
     public static void quitProgram(){
@@ -119,7 +133,6 @@ public class SearchInventory {
 /* array to string to see String value & not as default string [L java.lang.String;@372f7a8d
  System.out.println(Arrays.toString(currentItem));
 
-    2-Lookup a product by its id
     3-Find all products within a price range
     4-Add a new product
  */
