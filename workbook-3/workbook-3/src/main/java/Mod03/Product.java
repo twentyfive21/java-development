@@ -41,9 +41,9 @@ public class Product {
     @Override
     public String toString() {
         String formattedPrice = String.format("%.2f", price);
-        return "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + formattedPrice;
+        return "Product id= " + id +
+                "\nItem name= " + name  +
+                "\nItem price= $" + formattedPrice +"\n";
     }
 
 
