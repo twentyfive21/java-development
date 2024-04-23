@@ -74,10 +74,10 @@ public class SearchInventory {
                       break;
             case "2" : getProductById(scanner);
                       break;
-//            case "3" : findByPriceRange();
-//                      break;
-//            case "4" : addProduct();
-//                      break;
+            case "3" : findByPriceRange(scanner);
+                      break;
+            case "4" : addProduct(scanner);
+                      break;
             case "5" : quitProgram();
                       break;
             default : System.out.println("!!! Error please pick a valid option !!!\n");
@@ -117,12 +117,35 @@ public class SearchInventory {
                 found = true;
             }
         }
+
         if (!found){
             System.out.printf("\nError the id : %d does not match any of our items! :(\n", input);
         }
         getUserInput();
     }
-    // ~~~~~~~~~~~~~ case 5 get quit program method ~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~ case 3 get price range method ~~~~~~~~~~~~~~~~~~~~
+    public static void findByPriceRange(Scanner scanner) {
+        System.out.print("Please provide your max price: ");
+        float max = scanner.nextFloat();
+        System.out.print("Please provide your minimum price: ");
+        float min = scanner.nextFloat();
+        // clear leftover in buffer
+        scanner.nextLine();
+        ArrayList<Product> inventory = getInventory();
+
+        for (int i = 0; i < inventory.size(); i++){
+            float currentItem = inventory.get(i).getPrice();
+            if((currentItem >= min) && (currentItem <= max)){
+                System.out.println(inventory.get(i));
+            }
+        }
+        getUserInput();
+    }
+    // ~~~~~~~~~~~~~ case 4 add new product method ~~~~~~~~~~~~~
+    public static void addProduct(Scanner scanner){
+
+    }
+    // ~~~~~~~~~~~~~ case 5 get quit method ~~~~~~~~~~~~~~~~~~~~
     public static void quitProgram(){
         System.out.println("Thank you for coming today!");
         System.out.println("Have an amazing day!");
@@ -132,7 +155,4 @@ public class SearchInventory {
 
 /* array to string to see String value & not as default string [L java.lang.String;@372f7a8d
  System.out.println(Arrays.toString(currentItem));
-
-    3-Find all products within a price range
-    4-Add a new product
  */
