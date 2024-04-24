@@ -2,7 +2,7 @@ package Mod03;
 import java.io.*;
 import java.util.ArrayList;
 //import java.util.Arrays;
-import java.util.Collections;
+//import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -153,6 +153,13 @@ public class SearchInventory {
             scanner.nextLine();
             System.out.print("Please provide item name: ");
             String name = scanner.nextLine();
+
+            // if invalid items are provided ask user to input again
+            if (name.isEmpty() || price == 0){
+                System.out.println("Error please provide valid input!");
+                addProduct(scanner);
+            }
+
             BufferedWriter writer = new BufferedWriter(new FileWriter(path2, true));
             // create new product object
             Product productToAdd = new Product(idNum,name,price);
@@ -162,6 +169,11 @@ public class SearchInventory {
             // add to inventory Array.list
             idNum++;
             inventory.add(productToAdd);
+            // print out added product
+            System.out.println("\nYour item below has been added: \n");
+            System.out.println("Product Id= " + productToAdd.getId() + "\n"
+                    + "Item name= " + productToAdd.getName() + "\n"
+                    + "Item price= " + productToAdd.getPrice()+ "\n");
             writer.close();
         }catch(IOException e){
             e.printStackTrace();
