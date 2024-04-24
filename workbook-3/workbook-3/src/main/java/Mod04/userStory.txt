@@ -1,0 +1,43 @@
+************** User Story:************
+As a customer, I want to view a list of products so that I can determine what I want to buy.
+
+**Requirements:**
+1. As a customer, I should be able to search for a product so that I can view what I want to purchase.
+   - Create an input tab to allow the user to search.
+   - Save user data to use in search.
+   - Be able to view all item details.
+
+2. As a customer, I should be able to filter the products list so that I can narrow down my options.
+   - Implement filter options such as price range, category, and rating.
+   - Display filtered results in a user-friendly format.
+   - Allow users to easily adjust filter settings.
+
+3. As a customer, I must be logged in to make a purchase so that my order can be properly processed and tracked.
+   - Require users to create an account or log in before completing a purchase.
+   - Store user information securely for order processing.
+   - Provide order tracking and history for logged-in users.
+
+4. As a store owner, I should be able to add new products so that customers have access to the latest offerings.
+   - Implement a user-friendly interface for adding new products.
+   - Include fields for product name, description, price, and image upload.
+   - Ensure new products are displayed correctly in the product list.
+
+5. As a store owner, I should be able to see a list of orders so that I can manage inventory and fulfill orders efficiently.
+   - Provide an overview of all orders, including order status and customer details.
+   - Allow sorting and filtering options for managing orders.
+   - Integrate with inventory management system for efficient order fulfillment.
+
+6. As a store worker, I should be able to remove a product so that outdated or discontinued items can be removed from the list.
+   - Implement a function to remove products from the database.
+   - Provide confirmation prompts to prevent accidental deletion.
+   - Update all product listings and inventory after removal.
+
+7. As a store worker, I need to update product inventory so that accurate stock levels are maintained.
+   - Include functionality to adjust product quantities manually.
+   - Automatically update inventory levels upon order completion.
+   - Generate notifications for low-stock items and display a out of stock tag when sold out.
+
+8. As a store worker, I need to print an order pick list for orders in the store warehouse so that warehouse staff can efficiently fulfill orders.
+   - Generate printable order pick lists with order details and item quantities.
+   - Allow customization of pick list format and layout.
+   - Integrate with warehouse management system for seamless order processing so they can view to ensure correct order packing.
