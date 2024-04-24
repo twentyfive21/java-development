@@ -49,8 +49,4 @@ public class Practice {
         System.out.println("After Brittany re-added: "); for (int i = 0; i < kids.size(); i++) {
             System.out.println((i + 1) + " : " + kids.get(i)); }
     }
-
-
 }
-
-
