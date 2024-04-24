@@ -11,20 +11,23 @@ public class SearchInventory {
 
     // ~~~~~~~~~~~~~~~~ main method ~~~~~~~~~~~~~~~~~~
     public static void main(String[] args) {
+        getInventory();
         getUserInput();
     }
 
+    // ~~~~~~~~~~~~~~~ paths for file ~~~~~~~~~~~~~~~~
+    final static String path = "/Users/tina/pluralsight/" +
+            "java-development/workbook-3/workbook-3/src/main/java" +
+            "/Mod03/inventory.csv";
+    final static String path2 = "/Users/tina/pluralsight/" +
+            "java-development/workbook-3/workbook-3/src/main/java" +
+            "/Mod03/inventory2.csv";
+    static ArrayList<Product> inventory = new ArrayList<Product>();
+    static int idNum = 9880;
+
     // ~~~~~~~~~~~~ get inventory method ~~~~~~~~~~~~~~
     public static ArrayList<Product> getInventory(){
-        String path = "/Users/tina/pluralsight/" +
-                "java-development/workbook-3/workbook-3/src/main/java" +
-                "/Mod03/inventory.csv";
-        String path2 = "/Users/tina/pluralsight/" +
-                "java-development/workbook-3/workbook-3/src/main/java" +
-                "/Mod03/inventory2.csv";
-
         // create Array list of object Product
-        ArrayList<Product> inventory = new ArrayList<Product>();
         try{ // use buffer to read from text but, must provide file reader
             BufferedReader bufReader = new BufferedReader(new FileReader(path));
             BufferedWriter writer = new BufferedWriter(new FileWriter(path2));
@@ -34,9 +37,8 @@ public class SearchInventory {
                 String[] currentItem = item.split(Pattern.quote("|"));
 
                 // create new product object after split
-                 Product currentProd = (new Product(Integer.parseInt(currentItem[0]),
-                        currentItem[1],Float.parseFloat(currentItem[2])));
-
+                 Product currentProd = new Product(Integer.parseInt(currentItem[0]),
+                        currentItem[1],Float.parseFloat(currentItem[2]));
                 // write to inventory 2 csv
                  writer.write(currentProd.getId() + "|"
                  + currentProd.getName() + "|" + currentProd.getPrice()+ "\n");
@@ -89,7 +91,6 @@ public class SearchInventory {
 
     // ~~~~~~~~~~~~~ case 1 get all items method ~~~~~~~~~~~~~~~~~~~~
     public static void getAllItems(){
-        ArrayList<Product> inventory = getInventory();
         // Sort the inventory of products based on their names
         inventory.sort(Comparator.comparing(Product::getName));
         // Collections.sort(inventory, Comparator.comparing(Product::getName));
@@ -101,13 +102,12 @@ public class SearchInventory {
     }
     // ~~~~~~~~~~~~~ case 2 get product by id method ~~~~~~~~~~~~~~~~~~~~
     public static void getProductById(Scanner scanner) {
-        boolean found = false;
         System.out.print("Please provide the product ID number: ");
         int input = scanner.nextInt();
         // clear leftover in buffer from int
         scanner.nextLine();
-        ArrayList<Product> inventory = getInventory();
         // to access an element at a specific index in an ArrayList (or any List implementation),
+        boolean found = false;
         for (int i = 0; i < inventory.size(); i++){
             if (input == inventory.get(i).getId()){
                 // .get(i) method. This returns the element at the specified index in the list.
@@ -131,19 +131,43 @@ public class SearchInventory {
         float min = scanner.nextFloat();
         // clear leftover in buffer
         scanner.nextLine();
-        ArrayList<Product> inventory = getInventory();
-
+        boolean found = false;
         for (int i = 0; i < inventory.size(); i++){
             float currentItem = inventory.get(i).getPrice();
             if((currentItem >= min) && (currentItem <= max)){
                 System.out.println(inventory.get(i));
+                found = true;
             }
+        }
+        if (!found){
+            System.out.printf("No matching items in the range $%.2f-$%.2f provided", min, max);
         }
         getUserInput();
     }
     // ~~~~~~~~~~~~~ case 4 add new product method ~~~~~~~~~~~~~
     public static void addProduct(Scanner scanner){
-
+        try{
+            System.out.print("Please provide the item price: ");
+            float price = scanner.nextFloat();
+            // clear left over in buffer
+            scanner.nextLine();
+            System.out.print("Please provide item name: ");
+            String name = scanner.nextLine();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path2, true));
+            // create new product object
+            Product productToAdd = new Product(idNum,name,price);
+            // write to inventory 2 csv
+            writer.write(productToAdd.getId() + "|"
+                    + productToAdd.getName() + "|" + productToAdd.getPrice()+ "\n");
+            // add to inventory Array.list
+            idNum++;
+            inventory.add(productToAdd);
+            writer.close();
+        }catch(IOException e){
+            e.printStackTrace();
+            System.out.println("Error!");
+        }
+        getUserInput();
     }
     // ~~~~~~~~~~~~~ case 5 get quit method ~~~~~~~~~~~~~~~~~~~~
     public static void quitProgram(){
