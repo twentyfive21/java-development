@@ -1,6 +1,6 @@
 package Mod04;
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.io.*;
@@ -21,9 +21,6 @@ public class SearchStore {
 
     static ArrayList<Product2> inventory = new ArrayList<Product2>();
     static HashMap<String,Integer> cart = new HashMap<String,Integer>();
-
-    static String skuGenerator = "AV105";
-    static int startNum = 2; // update num first then add to String to make sku
 
     // ~~~~~~~~~~~~~~~ DISPLAY HOME SCREEN METHOD ~~~~~~~~~~~~~~~~~
     public static void displayUserHomeScreen () {
@@ -54,8 +51,8 @@ public class SearchStore {
     public static void displayProducts(Scanner scanner){
 
         System.out.println("\n~~~~~~~~ All current items Start ~~~~~~~");
-        for (int i = 0; i < inventory.size(); i++){
-            System.out.println(inventory.get(i));
+        for (Product2 product : inventory) {
+            System.out.println(product);
         }
         System.out.println("~~~~~~~~ All current items End ~~~~~~~");
 
@@ -88,9 +85,9 @@ public class SearchStore {
         switch (choice){
             case "1": System.out.println("searchByName");
                     break;
-            case"2": System.out.println("searchByPrice");
+            case"2": searchByPrice(scanner);
                     break;
-            case "3": System.out.println("searchByDepartment");
+            case "3": searchByDepartment(scanner);
                     break;
             default: System.out.println("Error please select a valid input");
                     searchByChoice(scanner);
@@ -100,6 +97,70 @@ public class SearchStore {
 
     // ********************* SEARCH BY DEPARTMENT **********************
 
+    public static void searchByDepartment(Scanner scanner){
+        // create array of departments
+
+        String[] allDepartments = {"(1) Audio Video", "(2) Computers","(3) Games", "(4) Electronics"};
+        System.out.println("\nPlease select one of the following to search by: ");
+
+        // print all available departments
+        for (String dep : allDepartments){
+            System.out.println(dep);
+        }
+
+        // save user choice and assign department to loop through
+        System.out.print("Selection: ");
+        String choice = scanner.nextLine();
+        String depChoice = "";
+        switch (choice){
+            case "1": depChoice = "Audio Video";
+                    break;
+            case "2" : depChoice = "Computers";
+                    break;
+            case "3" : depChoice = "Games";
+                    break;
+            case "4" : depChoice = "Electronics";
+                    break;
+            default: System.out.println("Invalid department choice please choose again!");
+                    searchByDepartment(scanner);
+                    break;
+        }
+
+        // display matching categories by checking through inventory
+        System.out.printf("\nMatching categories for: %s\n",depChoice);
+        for (Product2 currentDep : inventory) {
+            if (currentDep.getDepartment().equals(depChoice)) {
+                System.out.println(currentDep);
+            }
+        }
+
+        // take user back to home screen after showing matching departments
+        displayUserHomeScreen();
+    }
+
+    // *********************** SEARCH BY PRICE ************************
+
+    public static void searchByPrice(Scanner scanner){
+        System.out.println("\nYou have chosen search by price");
+        System.out.print("\nPlease provide the max price: ");
+        // max price
+        float max = scanner.nextFloat();
+        System.out.print("\nPlease provide the min price: ");
+        // min price
+        float min = scanner.nextFloat();
+        // clear left over in buffer
+        scanner.nextLine();
+
+        // loop through and search for matching price range
+        for(Product2 currentItem : inventory){
+            float priceToCheck = currentItem.getPrice();
+            if((priceToCheck >= min) && (priceToCheck <= max)){
+                System.out.println(currentItem);
+            }
+        }
+        // take user back to home screen after showing price range
+        displayUserHomeScreen();
+    }
 
     // ~~~~~~~~~~~~~~~~~~~~~~ ADD TO CART METHOD ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -180,7 +241,9 @@ DONE(Create a Product class that stores all the properties defined in the csv fi
 
 DONE(Displays a list of products that your store sells.)
 - On this screen the customer should be able to - Search or filter the list of products
-- They should also be able to search by Product Name, Price or Department
+- Product Name
+(DONE) - Price
+(DONE) - Department
 (DONE) Add a product to their cart
 (DONE)- Go Back to the home page
 
