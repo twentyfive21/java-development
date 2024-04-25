@@ -50,11 +50,9 @@ public class Product2 {
     @Override
     public String toString() {
         String formattedPrice = String.format("%.2f", price);
-        return "Product2{" +
-                "price=" + formattedPrice +
-                ", sku='" + sku + '\'' +
-                ", name='" + name + '\'' +
-                ", department='" + department + '\'' +
-                '}';
+        return "\nSku= " + sku + '\n' +
+                "Item name= " + name + '\n' +
+                "Department= " + department + '\n' +
+                "Item price= $" + formattedPrice + '\n';
     }
 }
