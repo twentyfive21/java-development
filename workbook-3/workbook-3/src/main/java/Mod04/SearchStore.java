@@ -1,6 +1,7 @@
 package Mod04;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.io.*;
 import java.util.regex.Pattern;
@@ -17,7 +18,10 @@ public class SearchStore {
 
     final static String path = "/Users/tina/pluralsight/java-development/" +
             "workbook-3/workbook-3/src/main/java/Mod04/products.csv";
+
     static ArrayList<Product2> inventory = new ArrayList<Product2>();
+    static HashMap<String,Integer> cart = new HashMap<String,Integer>();
+
     static String skuGenerator = "AV105";
     static int startNum = 2; // update num first then add to String to make sku
 
@@ -61,9 +65,9 @@ public class SearchStore {
                 "(3) Go Back to home page\n" + "Selection: ");
         String choice = scanner.nextLine();
         switch (choice){
-            case "1": System.out.println("searchByChoice");;
+            case "1": searchByChoice(scanner);
                 break;
-            case "2": System.out.println("Add product to cart");
+            case "2": addToCart(scanner);
                 break;
             case "3": displayUserHomeScreen();
                 break;
@@ -72,7 +76,71 @@ public class SearchStore {
                 break;
         }
     }
+    // ~~~~~~~~~ SEARCH BY MAIN METHOD & OTHER SEARCHES  ~~~~~~~~~~~~~~~~
+
+    public static void searchByChoice(Scanner scanner){
+        System.out.print("\nHow would you like to search by?\n" +
+                "(1) Search by item name\n" +
+                "(2) Search by price\n" +
+                "(3) Search by department\n" +
+                "Selection: ");
+        String choice = scanner.nextLine();
+        switch (choice){
+            case "1": System.out.println("searchByName");
+                    break;
+            case"2": System.out.println("searchByPrice");
+                    break;
+            case "3": System.out.println("searchByDepartment");
+                    break;
+            default: System.out.println("Error please select a valid input");
+                    searchByChoice(scanner);
+                    break;
+        }
+    }
+
+    // ********************* SEARCH BY DEPARTMENT **********************
+
+
+    // ~~~~~~~~~~~~~~~~~~~~~~ ADD TO CART METHOD ~~~~~~~~~~~~~~~~~~~~~~~
+
+    public static void addToCart(Scanner scanner){
+        System.out.println("before");
+        for(String key: cart.keySet()){
+            System.out.println(key + ":" + cart.get(key));
+        }
+        System.out.println("\nYou have chosen to add a product to cart!");
+        System.out.print("Please provide the sku of the item: ");
+        String sku = scanner.nextLine();
+        /* merge is used to merge the key sku with value of 1
+        using the remapping func Integer::sum.
+        - If the sku already exists in the cart, it updates the quantity
+            associated with that SKU by adding 1 to the existing quantity.
+        - If the sku doesn't exist in the cart, it adds the sku with a quantity of 1.
+        - If the sku exists but its associated value is null,
+            it associates the sku with the value 1.
+        - If the sku exists but its associated value is not an Integer,
+            it throws a ClassCastException.
+        */
+
+        cart.merge(sku, 1, Integer::sum);
+
+        // longer way of updating/adding to cart
+//         Integer quantity = cart.get(sku);
+//         if (quantity!= null){
+//             cart.put(sku, quantity + 1);
+//             } else {
+//               cart.put(sku,1);
+//             }
+
+//        System.out.println("after");
+//        for(String key: cart.keySet()){
+//            System.out.println(key + ":" + cart.get(key));
+//        }
+        displayProducts(scanner);
+    }
+
     // ~~~~~~~~~~~~~~~~~~~~ LOAD INVENTORY METHOD ~~~~~~~~~~~~~~~~~~~~~~
+
     public static void loadInventory() {
 
         try{ // use buffer to read from text but, must provide file reader
@@ -86,7 +154,6 @@ public class SearchStore {
             Product2 currentProduct = new Product2(Float.parseFloat(currentItem[2]),
                     currentItem[0], currentItem[1], currentItem[3]);
             // System.out.println(currentProduct);
-
              inventory.add(currentProduct);
             }
 
@@ -114,7 +181,7 @@ DONE(Create a Product class that stores all the properties defined in the csv fi
 DONE(Displays a list of products that your store sells.)
 - On this screen the customer should be able to - Search or filter the list of products
 - They should also be able to search by Product Name, Price or Department
-- Add a product to their cart
+(DONE) Add a product to their cart
 (DONE)- Go Back to the home page
 
 ~~~~~~~~~~~~~ Display Cart ~~~~~~~~`~~~~~~~~~~
