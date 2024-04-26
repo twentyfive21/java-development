@@ -8,21 +8,47 @@ import java.util.regex.Pattern;
 
 public class SearchStore {
 
-    // ~~~~~~~~~~~~~~~~~~~~~~~ MAIN METHOD ~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN METHOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public static void main(String[] args) {
         loadInventory();
         displayUserHomeScreen();
     }
-    // ~~~~~~~~~~~~~~~~ STATIC VARIABLES & PATH ~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~ STATIC VARIABLES & PATH ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     final static String path = "/Users/tina/pluralsight/java-development/" +
             "workbook-3/workbook-3/src/main/java/Mod04/products.csv";
 
-    static ArrayList<Product2> inventory = new ArrayList<Product2>();
-    static HashMap<String,Integer> cart = new HashMap<String,Integer>();
+    static ArrayList<Product2> inventory = new ArrayList<>();
+    static HashMap<String,Integer> cart = new HashMap<>();
 
-    // ~~~~~~~~~~~~~~~ DISPLAY HOME SCREEN METHOD ~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ LOAD INVENTORY METHOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public static void loadInventory() {
+
+        try{ // use buffer to read from text but, must provide file reader
+            BufferedReader bufReader = new BufferedReader(new FileReader(path));
+
+            String item = bufReader.readLine();
+
+            while ((item = bufReader.readLine()) != null){
+                String[] currentItem = item.split(Pattern.quote("|"));
+
+                Product2 currentProduct = new Product2(Float.parseFloat(currentItem[2]),
+                        currentItem[0], currentItem[1], currentItem[3]);
+                // System.out.println(currentProduct);
+                inventory.add(currentProduct);
+            }
+
+            // close readers
+            bufReader.close();
+        } catch (IOException e){
+            e.printStackTrace();
+            System.out.println("Error loading inventory! Please come back later");
+        }
+    }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ DISPLAY HOME SCREEN METHOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public static void displayUserHomeScreen () {
         // declare scanner to get home screen choice
         Scanner scanner = new Scanner(System.in);
@@ -36,7 +62,7 @@ public class SearchStore {
         switch (choice){
             case "1": displayProducts(scanner);
                     break;
-            case "2": System.out.println("displayCart");
+            case "2": displayCart(scanner);
                     break;
             case "3": exitProgram();
                     break;
@@ -46,7 +72,7 @@ public class SearchStore {
         }
     }
 
-    // ~~~~~~~~~~~~~~~ DISPLAY PRODUCTS SCREEN METHOD ~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~ DISPLAY PRODUCTS SCREEN METHOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public static void displayProducts(Scanner scanner){
 
@@ -73,7 +99,7 @@ public class SearchStore {
                 break;
         }
     }
-    // ~~~~~~~~~ SEARCH BY MAIN METHOD & OTHER SEARCHES  ~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~ SEARCH BY MAIN METHOD & OTHER SEARCHES  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public static void searchByChoice(Scanner scanner){
         System.out.print("\nHow would you like to search by?\n" +
@@ -100,13 +126,13 @@ public class SearchStore {
     public static void searchByName(Scanner scanner){
         System.out.print("\nYou have chosen to search by name!" +
                 "\nPlease provide name of item: ");
-        String itemName = scanner.nextLine().trim();
+        String itemName = scanner.nextLine().trim().toLowerCase();
         System.out.printf("Items matching : %s\n", itemName);
 
         // check for matching search by name ignoring case
         for(Product2 currentItem : inventory){
-            String nameToCheck = currentItem.getName();
-            if(nameToCheck.equalsIgnoreCase(itemName)){
+            String nameToCheck = currentItem.getName().toLowerCase();
+            if(nameToCheck.contains(itemName)){
                 System.out.println(currentItem);
             }
         }
@@ -152,7 +178,6 @@ public class SearchStore {
                 System.out.println(currentDep);
             }
         }
-
         // take user back to home screen after showing matching departments
         displayUserHomeScreen();
     }
@@ -181,7 +206,7 @@ public class SearchStore {
         displayUserHomeScreen();
     }
 
-    // ~~~~~~~~~~~~~~~~~~~~~~ ADD TO CART METHOD ~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ADD TO CART METHOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public static void addToCart(Scanner scanner){
         System.out.println("before");
@@ -209,60 +234,57 @@ public class SearchStore {
 //             } else {
 //               cart.put(sku,1);
 //             }
-
-//        System.out.println("after");
-//        for(String key: cart.keySet()){
-//            System.out.println(key + ":" + cart.get(key));
-//        }
         displayProducts(scanner);
     }
 
-    // ~~~~~~~~~~~~~~~~~~~~ LOAD INVENTORY METHOD ~~~~~~~~~~~~~~~~~~~~~~
 
-    public static void loadInventory() {
+ // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DISPLAY CART METHOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        try{ // use buffer to read from text but, must provide file reader
-            BufferedReader bufReader = new BufferedReader(new FileReader(path));
+    public static void displayCart(Scanner scanner){
 
-            String item = bufReader.readLine();
-
-            while ((item = bufReader.readLine()) != null){
-            String[] currentItem = item.split(Pattern.quote("|"));
-
-            Product2 currentProduct = new Product2(Float.parseFloat(currentItem[2]),
-                    currentItem[0], currentItem[1], currentItem[3]);
-            // System.out.println(currentProduct);
-             inventory.add(currentProduct);
+        if (cart.isEmpty()){
+            System.out.println("\nNo current items added to cart");
+        } else {
+            System.out.println("Current Items in the cart");
+            for(String key: cart.keySet()){
+                System.out.println(key + ":" + cart.get(key));
             }
 
-            // close readers
-            bufReader.close();
-        } catch (IOException e){
-            e.printStackTrace();
-            System.out.println("Error loading inventory! Please come back later");
+
         }
+        System.out.print("\nWhat would you like to do?\n" +
+                "(1) Check Out\n" +
+                "(2) Remove Product from cart\n" +
+                "(3) Go Back to the home screen\n" +
+                "Selection: ");
+        String choice = scanner.nextLine();
+        switch (choice){
+            case "1":
+                System.out.println("checkoutCart();");
+                break;
+            case"2":
+                System.out.println("removeProduct(scanner);");
+                break;
+            case "3": displayUserHomeScreen();
+                break;
+            default: System.out.println("Error please select a valid input");
+                displayCart(scanner);
+                break;
+        }
+
+
+
     }
 
-    // ~~~~~~~~~~~~~~~~~~~~~~ EXIT METHOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EXIT METHOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public static void exitProgram(){
         System.out.println("Thank you for visiting! Goodbye, come again! :)");
     }
 }
 
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  Screens ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~ Display Products ~~~~~~~~~~~~~
-DONE(Use the provided products.csv file to load the store's product inventory into your application.)
-DONE(Create a Product class that stores all the properties defined in the csv file)
-
-DONE (Displays a list of products that your store sells.)
-(DONE) On this screen the customer should be able to - Search or filter the list of products
-- Product Name
-(DONE) - Price
-(DONE) - Department
-(DONE) Add a product to their cart
-(DONE)- Go Back to the home page
 
 ~~~~~~~~~~~~~ Display Cart ~~~~~~~~~~~~~~~~~~
 -This displays a list of line items that are in the customer's cart.
@@ -311,10 +333,31 @@ saved to the file
 
 !!!!!!!!!!!!!!!!!!!!!!!!!! COMPLETED ITEMS !!!!!!!!!!!!!!!!!!!!!!!!
 
-~~~~~~ The Store Home Screen ~~~~~~
+~~~~~~~~~~~~~ 10:20AM-10:25AM The Store Home Screen ~~~~~~~~~~~~~~
 The home screen should display a list of options that a user can choose from.
-o Display Products
-o Display Cart
-o Exit - closes out of the application
+1 MIN (TINA-D) Display Products
+1 MIN (TINA) Display Cart
+1 MIN (TINA) Exit closes out of the application
 
+1~~~~~~~~~~~~~~~ 10:30AM - 1:00PM Display Products ~~~~~~~~~~~~~
+10:30AM-10:40AM (TO DO) Create a Product class that stores all the properties defined in the csv file
+10:40AM-10:55AM (TO DO) Use the products.csv file to load the store's product inventory into your application.
+10:55AM-11:10AM (TO DO) (Displays a list of products that your store sells.)
+---- On this screen the customer should be able to - Search or filter the list of products ----
+11:15AM-11:30AM (TO DO) - Product Name
+11:30AM-11:45AM (TO DO) - Price
+11:45AM-11:55AM (TO DO) - Department
+LUNCH BREAK
+12:35PM-12:50PM (TO DO) Add a product to their cart
+12:50PM-1:00PM (TO DO) - Go Back to the home page
+
+~~~~~~~~~~~~~ 1:00PM - 2:30PM Display Cart ~~~~~~~~~~~~~~~~~~
+1:05PM-1:15PM (TO DO) This displays a list of line items that are in the customer's cart.
+1:15PM-1:25PM (TO DO) It should also display the total sales amount of the cart.
+The customer should be able to:
+1:30PM-1:45PM (TO DO) Check Out
+1:45PM-2:00PM (TO DO) Remove Product from the cart
+1:45PM-2:00PM (TO DO) Go Back to the home screen
+2:10PM-2:30PM (TO DO) If customer chooses to remove a product need to prompt
+them for the product to remove
 */
