@@ -83,7 +83,7 @@ public class SearchStore {
                 "Selection: ");
         String choice = scanner.nextLine();
         switch (choice){
-            case "1": System.out.println("searchByName");
+            case "1": searchByName(scanner);
                     break;
             case"2": searchByPrice(scanner);
                     break;
@@ -93,6 +93,25 @@ public class SearchStore {
                     searchByChoice(scanner);
                     break;
         }
+    }
+
+    // ********************* SEARCH BY NAME **********************
+
+    public static void searchByName(Scanner scanner){
+        System.out.print("\nYou have chosen to search by name!" +
+                "\nPlease provide name of item: ");
+        String itemName = scanner.nextLine().trim();
+        System.out.printf("Items matching : %s\n", itemName);
+
+        // check for matching search by name ignoring case
+        for(Product2 currentItem : inventory){
+            String nameToCheck = currentItem.getName();
+            if(nameToCheck.equalsIgnoreCase(itemName)){
+                System.out.println(currentItem);
+            }
+        }
+        // re-run program
+        displayUserHomeScreen();
     }
 
     // ********************* SEARCH BY DEPARTMENT **********************
@@ -182,9 +201,7 @@ public class SearchStore {
         - If the sku exists but its associated value is not an Integer,
             it throws a ClassCastException.
         */
-
         cart.merge(sku, 1, Integer::sum);
-
         // longer way of updating/adding to cart
 //         Integer quantity = cart.get(sku);
 //         if (quantity!= null){
@@ -239,15 +256,15 @@ public class SearchStore {
 DONE(Use the provided products.csv file to load the store's product inventory into your application.)
 DONE(Create a Product class that stores all the properties defined in the csv file)
 
-DONE(Displays a list of products that your store sells.)
-- On this screen the customer should be able to - Search or filter the list of products
+DONE (Displays a list of products that your store sells.)
+(DONE) On this screen the customer should be able to - Search or filter the list of products
 - Product Name
 (DONE) - Price
 (DONE) - Department
 (DONE) Add a product to their cart
 (DONE)- Go Back to the home page
 
-~~~~~~~~~~~~~ Display Cart ~~~~~~~~`~~~~~~~~~~
+~~~~~~~~~~~~~ Display Cart ~~~~~~~~~~~~~~~~~~
 -This displays a list of line items that are in the customer's cart.
 It should also display the total sales amount of the cart.
 The customer should be able to:
@@ -293,6 +310,7 @@ saved to the file
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!! COMPLETED ITEMS !!!!!!!!!!!!!!!!!!!!!!!!
+
 ~~~~~~ The Store Home Screen ~~~~~~
 The home screen should display a list of options that a user can choose from.
 o Display Products
