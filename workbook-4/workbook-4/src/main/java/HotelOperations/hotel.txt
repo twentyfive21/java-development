@@ -1,12 +1,15 @@
 
 Exercise 1 :
-1. We need a guest object to store the guest info such as
-(check in time, payment, number of guests, ect).
+1. We need a guest object to store the guest info
 2. We need a room object which holds their room number and room key
 3. We need a receipt object to store hotel charges for their stay
 4. A room service object which holds delivery details
 5. This can be a meals transaction object storing meal info and time ordered
 6. A request object to hold all instances of guest requests with specifics
-7. A house keeping object to keep track of rooms that need to be cleaned
-8. A valet object if the guest wants to use that service
+7. A housekeeping object to keep track of rooms that need to be cleaned
 
+Exercise 2 :
+1. We need to KNOW : ..
+check in time, payment, number of guests, room details, hotel expenses, if room is clean.
+2. What we need to DO : ..
+calculate guest expenses, give them a receipt, clear out room for new guest.
