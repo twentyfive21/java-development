@@ -66,5 +66,13 @@ public class Room {
     public void cleanRoom(){
         isDirty = false;
         isOccupied = false;
+        isAvailable = true;
     }
 }
+
+/*
+ - assertEquals(expected, actual) - compares for equality
+− assertNotEquals(expected, actual) -- compares values and fails it equal
+− assertArrayEquals(expectedArray, actualArray) - compares size & values of all elements in 2 arrays
+− assertTrue(booleanValue) - checks if is true
+− assertFalse(booleanValue) - checks if is false */
