@@ -1,5 +1,7 @@
 package HotelOperations;
 
+import java.time.LocalDateTime;
+
 public class Employee {
     private int employeeId;
     private String name;
@@ -8,6 +10,8 @@ public class Employee {
     private int hoursWorked;
     private double startTime; // Track start time when punching in
     private double endTime; // Track end time when punching in
+    private LocalDateTime startClock;
+    private LocalDateTime endClock;
     public Employee(int employeeId, String name, String department, double payRate, int hoursWorked) {
         this.employeeId = employeeId;
         this.name = name;
@@ -81,6 +85,13 @@ public class Employee {
 
     public void punchOut(double time) {
         endTime = time;
+    }
+
+    public void punchIn(){
+       startClock = LocalDateTime.now();
+    }
+    public void punchOut(){
+        endClock = LocalDateTime.now();
     }
 
     public double timeCard (){
