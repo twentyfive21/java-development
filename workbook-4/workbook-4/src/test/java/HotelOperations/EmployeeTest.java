@@ -13,7 +13,7 @@ class EmployeeTest {
         // act
         employee.punchIn(9.0); // 9am
         // assert
-        assertEquals(9.0,9.0);
+        assertEquals(9.0, employee.getStartTime());
     }
 
     @Test
@@ -23,7 +23,7 @@ class EmployeeTest {
         // act
         employee.punchOut(17.0); // 5pm
         // assert
-        assertEquals(17.0, 17.0);
+        assertEquals(17.0, employee.getEndTime());
     }
     void timecard_should_return_correct_time_worked(){
         // arrange
