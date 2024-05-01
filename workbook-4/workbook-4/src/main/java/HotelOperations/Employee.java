@@ -6,7 +6,8 @@ public class Employee {
     private String department;
     private double payRate;
     private int hoursWorked;
-
+    private double startTime; // Track start time when punching in
+    private double endTime; // Track end time when punching in
     public Employee(int employeeId, String name, String department, double payRate, int hoursWorked) {
         this.employeeId = employeeId;
         this.name = name;
@@ -62,13 +63,28 @@ public class Employee {
         if (hoursWorked > 40){
             return 40;
         }
+        return 40;
     }
     public double getOvertimeHours(){
         if(hoursWorked > 40){
             return hoursWorked - 40;
         }
+        return hoursWorked;
     }
     public double getOverTimePay(){
         return getOvertimeHours() * 1.5;
     }
+
+    public void punchIn(double time) {
+        startTime = time;
+    }
+
+    public void punchOut(double time) {
+        endTime = time;
+    }
+
+    public double timeCard (){
+        return startTime - endTime;
+    }
+
 }
