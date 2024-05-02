@@ -1,4 +1,4 @@
-package HotelOperations;
+package hotelOperations;
 
 public class Hotel {
 

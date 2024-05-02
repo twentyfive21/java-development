@@ -1,4 +1,4 @@
-package HotelOperations;
+package hotelOperations;
 
 import org.junit.jupiter.api.Test;
 

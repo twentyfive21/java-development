@@ -1,4 +1,4 @@
-package HotelOperations;
+package hotelOperations;
 
 import java.time.LocalDateTime;
 

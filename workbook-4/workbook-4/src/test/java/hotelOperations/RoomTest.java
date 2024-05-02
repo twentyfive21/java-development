@@ -1,4 +1,4 @@
-package HotelOperations;
+package hotelOperations;
 
 import static org.junit.jupiter.api.Assertions.*;
 
