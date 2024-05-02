@@ -11,6 +11,7 @@ public class Hand {
 // to store the card
     public void Deal(Card card){
         cards.add(card);
+        cards.add(card);
     }
     public int getSize(){
         return cards.size();
