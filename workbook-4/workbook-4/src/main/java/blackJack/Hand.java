@@ -2,29 +2,46 @@ package blackJack;
 
 import java.util.ArrayList;
 
-public class Hand {
+class Hand {
     private ArrayList<Card> cards;
-    public Hand(){
+
+    public Hand() {
         cards = new ArrayList<>();
     }
-    // A Card is dealt to the Hand and the Hand is responsible
-// to store the card
-    public void Deal(Card card){
-        cards.add(card);
+
+    // Deal a card to the hand
+    public void deal(Card card) {
         cards.add(card);
     }
-    public int getSize(){
+
+    public int getSize() {
         return cards.size();
     }
-    // The Hand uses the methods of each card to determine
-// the value of each card - and adds up all values
-    public int getValue(){
+
+    public int getValue() {
         int value = 0;
-        for(Card card: cards){
-            card.flip(); // turn the card over to see the value
-            value += card.getPointValue();
-            card.flip(); // hide the card again
+        int aceCount = 0;
+        for (Card card : cards) {
+            card.flip(); // Turn the card face up
+            int cardValue = card.getPointValue();
+            if (cardValue == 11) {
+                aceCount++;
+            }
+            value += cardValue;
+            card.flip(); // Turn the card face down again
         }
+
+        // Adjust Aces to be worth 1 if the total exceeds 21
+        while (value > 21 && aceCount > 0) {
+            value -= 10;
+            aceCount = 0;
+        }
+
         return value;
     }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
 }
+

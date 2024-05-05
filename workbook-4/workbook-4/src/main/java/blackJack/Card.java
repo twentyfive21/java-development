@@ -13,6 +13,7 @@ class Card {
 
     public String getSuit() {
         // Only return the suit if the card is face up
+        // suits: hearts, diamonds, spades, and clubs.
         if (isFaceUp) {
             return suit;
         } else {
