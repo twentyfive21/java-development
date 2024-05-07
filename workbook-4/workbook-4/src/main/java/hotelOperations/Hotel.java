@@ -53,9 +53,7 @@ public class Hotel {
     }
 
 
-    public int getAvailableSuites(){
-    return numberOfSuites = bookedSuite;
-    }
+    public int getAvailableSuites(){ return numberOfSuites - bookedSuite;}
 
     public int getAvailableRooms(){
         return numberOfRooms - bookedBasicRooms;
