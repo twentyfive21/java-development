@@ -1,5 +1,6 @@
 package hotelOperations;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Employee {
@@ -92,6 +93,23 @@ public class Employee {
     }
     public void punchOut(){
         endClock = LocalDateTime.now();
+    }
+
+    public double calculateHoursWorked(){
+        /*
+        In Java, Duration is a class in the java.time package that represents
+        a duration of time, such as "5 hours" or "30 minutes". It measures
+        time in terms of seconds and nanoseconds, and provides methods to perform
+        arithmetic operations on durations, such as addition, subtraction, and comparison.
+        You can create a Duration object using the between() method in the Duration class,
+        which calculates the amount of time between two instances of LocalDateTime,
+        LocalTime, or Instant.
+        */
+        // Calculate the difference in minutes between the start and end times
+        long minutesWorked = Duration.between(startClock, endClock).toMinutes();
+        // Convert minutes to hours
+        double hoursWorked = minutesWorked / 60.0;
+        return hoursWorked;
     }
 
     public double timeCard (){
