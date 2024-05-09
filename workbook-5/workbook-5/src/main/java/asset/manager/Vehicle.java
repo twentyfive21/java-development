@@ -60,11 +60,10 @@ public class Vehicle extends Asset{
         }
 
         // Split the make and model from the string
-        String[] makeModel = getMakeModel().split(" ");
-        String make = makeModel[0]; // First part is the make
-
+        String make = getMakeModel().toLowerCase();
         // Check if the mileage is over 100,000 and if the brand's make is not Honda or Toyota
-        if (odometer > 100000 && !(make.equalsIgnoreCase("Honda") || make.equalsIgnoreCase("Toyota"))) {
+        if (odometer > 100000 && !(make.contains("honda")
+                || make.contains("toyota"))) {
             // If both conditions are met, further reduce the value by 25%
             reducedValue *= 0.75; // 25% reduction
         }
