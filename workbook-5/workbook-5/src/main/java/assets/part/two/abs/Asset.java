@@ -1,6 +1,7 @@
-package asset.manager;
+package assets.part.two.abs;
 
-public class Asset {
+public abstract class Asset {
+
     // asset members
     private String description;
     private String dateAcquired;
@@ -39,10 +40,8 @@ public class Asset {
         this.originalCost = originalCost;
     }
     // derived method
-
-    public double getValue(){
-        return originalCost;
-    }
+    // no {} for abstract method they cannot have a body
+    public abstract double getValue();
 
     @Override
     public String toString() {
@@ -52,4 +51,5 @@ public class Asset {
                 ", originalCost=" + originalCost +
                 '}';
     }
+
 }
