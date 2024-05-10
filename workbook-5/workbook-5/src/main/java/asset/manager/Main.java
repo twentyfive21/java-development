@@ -18,7 +18,7 @@ public class Main {
         Vehicle firstCar = new Vehicle("First Car", "May 12 2024",
                 10000, "Toyota 4runner",2,500);
         Vehicle secondCar = new Vehicle("Second Car", "May 14 2024",
-                10000, "Jeep 4runner",11,10000);
+                10000, "Jeep Wrangler",11,101000);
 
         // add assets to array list
         assets.add(firstHome);
