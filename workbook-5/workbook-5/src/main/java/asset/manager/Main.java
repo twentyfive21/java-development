@@ -12,7 +12,7 @@ public class Main {
         House firstHome = new House("First Home", "May 9 2024", 50000,
                 "123 first house ln", 1, 2000, 300);
         House secondHome = new House("Second Home", "May 10 2024", 70000,
-                "456 second house dr", 2, 3000, 400);
+                "456 second house dr", 4, 3000, 400);
         // two vehicle objects
         // String description, String dateAcquired, double originalCost, String makeModel, int year, int odometer
         Vehicle firstCar = new Vehicle("First Car", "May 12 2024",

@@ -50,22 +50,38 @@ public class House extends Asset{
         this.lotSize = lotSize;
     }
 
-    public double getValue(){
-        double cost = 0;
-        switch(condition){
-            case 1 : cost = 180.00;
+    @Override
+    public double getValue() {
+        double costPerSquareFoot = 0;
+
+        switch(condition) {
+            case 1:
+                costPerSquareFoot = 180.00;
                 break;
-            case 2 : cost = 130.00;
+            case 2:
+                costPerSquareFoot = 130.00;
                 break;
-            case 3 : cost = 90.00;
+            case 3:
+                costPerSquareFoot = 90.00;
                 break;
-            case 4 : cost = 80.00;
+            case 4:
+                costPerSquareFoot = 80.00;
                 break;
-            default: cost = 0.00;
-                break;
+            default:
+                return 0; // Return 0 for invalid condition
         }
-        cost = cost + (squareFoot * .25);
-        return cost;
+
+        // Calculate the total cost based on the condition and square footage
+        double totalCost = costPerSquareFoot * squareFoot;
+
+        // Add 25 cents per square foot of lot size
+        double tax = lotSize * 0.25;
+
+        // Add the tax to the total cost
+        totalCost += tax;
+
+        return totalCost;
     }
+
 }
 

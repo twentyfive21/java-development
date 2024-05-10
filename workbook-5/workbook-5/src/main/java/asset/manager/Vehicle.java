@@ -39,6 +39,7 @@ public class Vehicle extends Asset{
         this.odometer = odometer;
     }
 
+    @Override
     public double getValue() {
         double reducedValue = getOriginalCost();
         double discountRate =0;

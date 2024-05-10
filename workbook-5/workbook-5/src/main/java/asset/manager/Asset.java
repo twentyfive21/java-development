@@ -39,6 +39,7 @@ public class Asset {
         this.originalCost = originalCost;
     }
     // derived method
+
     public double getValue(){
         return originalCost;
     }
