@@ -1,6 +1,7 @@
 package area.pluralsight;
 
 public class Rectangle extends Shape{
+    // make protected so subclasses can access it or within the package
     protected double length;
     protected double width;
 
