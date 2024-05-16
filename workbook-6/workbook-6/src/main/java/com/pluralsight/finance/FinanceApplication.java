@@ -25,7 +25,7 @@ public class FinanceApplication {
              implements the Valuable interface. acc 2 only has get value
              method bc Valuable interface only has that method */
 
-        account2.deposit(100);
+        // account2.deposit(100); an error since cannot access that method
         account2.getValue();
 
     /* Polymorphism in Action:
