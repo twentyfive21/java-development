@@ -1,4 +1,4 @@
-import com.pluralsight.workingWithInterfaces.Person;
+package com.pluralsight.workingWithInterfaces;
 
 import java.util.ArrayList;
 import java.util.Collections;

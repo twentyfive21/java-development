@@ -54,8 +54,6 @@ public class Person implements Comparable<Person> {
 
     }
 
-    public int com
-
     @Override
     public String toString() {
         return "Person{" +
