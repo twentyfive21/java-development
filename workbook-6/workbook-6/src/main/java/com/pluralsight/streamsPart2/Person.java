@@ -1,4 +1,4 @@
-package com.pluralsight.streams;
+package com.pluralsight.streamsPart2;
 
 public class Person {
     private String firstName;
