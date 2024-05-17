@@ -20,6 +20,7 @@ public class Portfolio {
             assets.add(asset);
     }
 
+
     public double getValue(){
         double total = 0;
         if(assets == null){
