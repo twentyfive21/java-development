@@ -20,10 +20,10 @@ public class House extends FixedAsset{
 
     @Override
     public String toString() {
-        return "House{" +
-                "yearBuilt=" + yearBuilt +
-                ", squareFeet=" + squareFeet +
-                ", bedrooms=" + bedrooms +
-                '}';
+        return String.format("House Info: \n" +
+                        "Year Built: %d\n" +
+                        "Square Feet: %d\n" +
+                        "Bedrooms: %d\n",
+                yearBuilt, squareFeet, bedrooms);
     }
 }

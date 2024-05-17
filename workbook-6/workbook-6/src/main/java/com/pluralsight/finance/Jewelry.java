@@ -15,8 +15,6 @@ public class Jewelry extends FixedAsset {
 
     @Override
     public String toString() {
-        return "Jewelry{" +
-                "karat=" + karat +
-                '}';
+        return String.format("Jewelry weight= %.2f ",karat);
     }
 }

@@ -16,8 +16,6 @@ public class Gold extends FixedAsset{
 
     @Override
     public String toString() {
-        return "Gold{" +
-                "weight=" + weight +
-                '}';
+        return String.format("Gold weight= %.2f ",weight);
     }
 }

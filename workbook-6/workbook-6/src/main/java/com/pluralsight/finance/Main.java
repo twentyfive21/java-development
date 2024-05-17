@@ -14,11 +14,7 @@ public class Main {
     static Portfolio portfolio = new Portfolio("Portfolio", "Tina");
 
     public static void main(String[] args) {
-
-
-
-        boolean running = true;
-        while (running) {
+        while (true) {
             // Print main menu.
             System.out.println("\nSelect Asset Below");
             System.out.println("(1) Bank Account");
@@ -69,7 +65,7 @@ public class Main {
         System.out.print("Enter account balance: ");
         double balance = scanner.nextDouble();
         scanner.nextLine();
-
+        System.out.println("\n! Info has been added! ");
         // Add the bank account to the portfolio.
         portfolio.add(new BankAccount(accountName, accountNumber,balance));
     }
@@ -88,7 +84,7 @@ public class Main {
         System.out.print("Enter card balance: ");
         double cardBalance = scanner.nextDouble();
         scanner.nextLine();
-
+        System.out.println("\n! Info has been added! ");
         // Add the credit card to the portfolio.
         portfolio.add(new CreditCard(cardName, cardNumber, cardBalance));
     }
@@ -103,7 +99,7 @@ public class Main {
         System.out.print("Enter weight of gold: ");
         double goldWeight = scanner.nextDouble();
         scanner.nextLine();
-
+        System.out.println("\n! Info has been added! ");
         // Add the gold to the portfolio.
         portfolio.add(new Gold(goldName,goldValue,goldWeight));
     }
@@ -118,7 +114,8 @@ public class Main {
         // Ask user for the karat of the jewelry.
         System.out.print("Enter karat of jewelry: ");
         double karat = scanner.nextDouble();
-
+        scanner.nextLine();
+        System.out.println("\n! Info has been added! ");
         // Add the jewelry to the portfolio.
         portfolio.add(new Jewelry(jewelryName,jewelryValue,karat));
     }
@@ -136,7 +133,8 @@ public class Main {
         // Ask the user for the number of bedrooms.
         System.out.print("Enter number of bedrooms: ");
         int bedrooms = scanner.nextInt();
-
+        scanner.nextLine();
+        System.out.println("\n! Info has been added! ");
         // Add the house to the portfolio.
         portfolio.add(new House("New default house", 5000, yearBuilt, squareFeet, bedrooms));
     }
@@ -144,12 +142,13 @@ public class Main {
     // Create portfolioInformation method.
     public static void getPortfolioInfo() {
         // Print portfolio total value.
-        System.out.println("\nPortfolio's current total value: $" + portfolio.getValue());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.printf("Portfolio's current total value: $%,.2f\n", portfolio.getValue());
 
         // Print most valuable asset from the portfolio.
         Valuable mostValuable = portfolio.getMostValuable();
         if (mostValuable != null) {
-            System.out.println("Most valuable asset: " + mostValuable);
+            System.out.println("\nMost valuable asset: \n" + mostValuable);
         } else {
             System.out.println("No assets in the portfolio.");
         }
@@ -157,10 +156,11 @@ public class Main {
         // Print least valuable asset from the portfolio.
         Valuable leastValuable = portfolio.getLeastValuable();
         if (leastValuable != null) {
-            System.out.println("Least valuable asset: " + leastValuable);
+            System.out.println("\nLeast valuable asset:\n" + leastValuable);
         } else {
             System.out.println("No assets in the portfolio.");
         }
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
     public static void  exitProgram(){

@@ -27,10 +27,11 @@ public class CreditCard implements Valuable{
 
     @Override
     public String toString() {
-        return "CreditCard{" +
-                "name='" + name + '\'' +
-                ", accountNumber='" + accountNumber + '\'' +
-                ", balance=" + balance +
-                '}';
+        return String.format("Credit Card Info:\n" +
+                        "Name: %s\n" +
+                        "Account Number: %s\n" +
+                        "Balance: $%,.2f",
+                name, accountNumber, balance);
+
     }
 }

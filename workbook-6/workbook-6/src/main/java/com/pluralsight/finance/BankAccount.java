@@ -27,10 +27,11 @@ public class BankAccount implements Valuable{
 
     @Override
     public String toString() {
-        return "BankAccount{" +
-                "name='" + name + '\'' +
-                ", accountNumber='" + accountNumber + '\'' +
-                ", balance=" + balance +
-                '}';
+        return String.format("BankAccount Info:\n" +
+                        "Name: %s\n" +
+                        "Account Number: %s\n" +
+                        "Balance: $%,.2f",
+                name, accountNumber, balance);
+
     }
 }
