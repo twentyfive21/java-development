@@ -24,4 +24,13 @@ public class BankAccount implements Valuable{
     public double getValue(){
         return balance;
     }
+
+    @Override
+    public String toString() {
+        return "BankAccount{" +
+                "name='" + name + '\'' +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
 }

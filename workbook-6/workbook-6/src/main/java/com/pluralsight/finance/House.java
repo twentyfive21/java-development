@@ -17,4 +17,13 @@ public class House extends FixedAsset{
     public double getValue(){
         return squareFeet;
     }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "yearBuilt=" + yearBuilt +
+                ", squareFeet=" + squareFeet +
+                ", bedrooms=" + bedrooms +
+                '}';
+    }
 }

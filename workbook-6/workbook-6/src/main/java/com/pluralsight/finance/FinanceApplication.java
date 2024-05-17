@@ -1,5 +1,7 @@
 package com.pluralsight.finance;
 
+import com.pluralsight.portfolio.Portfolio;
+
 public class FinanceApplication {
 
     public static void main(String[] args) {
@@ -42,5 +44,6 @@ public class FinanceApplication {
         but it's referenced as a Valuable type due to polymorphism,
         allowing you to treat it as a Valuable object.
      */
+
     }
 }

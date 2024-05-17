@@ -2,6 +2,7 @@ package com.pluralsight.portfolio;
 
 import com.pluralsight.finance.Valuable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Portfolio {
@@ -12,6 +13,7 @@ public class Portfolio {
     public Portfolio(String name, String owner) {
         this.name = name;
         this.owner = owner;
+        this.assets = new ArrayList<>();
     }
 
     public void add(Valuable asset){
@@ -20,10 +22,15 @@ public class Portfolio {
 
     public double getValue(){
         double total = 0;
+        if(assets == null){
+            return 0;
+        }
         for (Valuable valuable : assets){
             total += valuable.getValue();
         }
         return total;
+
+
     }
 
     public Valuable getMostValuable(){
@@ -53,4 +60,10 @@ public class Portfolio {
         return item;
     }
 
+    @Override
+    public String toString() {
+        return "Portfolio Info for" + name +
+                "\nOwner=" + owner  +
+                "\nAssets=" + assets;
+    }
 }
