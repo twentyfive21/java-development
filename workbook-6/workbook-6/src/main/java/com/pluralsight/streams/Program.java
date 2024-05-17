@@ -24,7 +24,8 @@ public class Program {
         System.out.println("(1) Search for first or last name");
         System.out.println("(2) Display oldest age");
         System.out.println("(3) Display youngest age");
-        System.out.println("(4) Exit");
+        System.out.println("(4) Calculate average age ");
+        System.out.println("(5) Exit");
         System.out.print("Selection: ");
         // get user choice for filtering
         String choice = scanner.nextLine();
@@ -38,7 +39,9 @@ public class Program {
                     break;
                 case "3" : getAge("young");
                     break;
-                case "4" : System.out.println("Exiting ...");
+                case "4" : calculateAverageAge();
+                    break;
+                case "5" : System.out.println("Exiting ...");
                     return;
                 default: System.out.println("Error pick a valid choice");
                     break;
@@ -118,6 +121,15 @@ public class Program {
             System.out.println(person);
         }
         System.out.println("~~~~~~~~~~~~~~~~~~~");
+    }
+    public static void calculateAverageAge(){
+        // display all available people
+        int total = 0;
+        for (Person person : people){
+            total += person.getAge();
+        }
+        total = total / people.size();
+        System.out.println("Average age: " + total);
     }
     public static void loadUsers(){
         // create person objects
