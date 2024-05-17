@@ -26,6 +26,7 @@ public class Program {
         System.out.println("(3) Display youngest age");
         System.out.println("(4) Exit");
         System.out.print("Selection: ");
+        // get user choice for filtering
         String choice = scanner.nextLine();
 
             switch (choice){
@@ -46,7 +47,9 @@ public class Program {
     }
 
     public static void getName(){
+        // let user pick first or last name
         System.out.println("Select (1) first name & (2) for last name");
+        System.out.print("Selection: ");
         String choice = scanner.nextLine().trim();
         int type = 0;
         switch (choice){
@@ -57,8 +60,9 @@ public class Program {
             default: System.out.println("Error pick a valid choice");
                 break;
         }
-        System.out.println("Please provide the name: ");
+        System.out.print("Please provide the name: ");
         String name = scanner.nextLine().trim().toLowerCase();
+        // search for last name
         if(type == 0){
             for(Person person : people){
                 if(person.getLastName().toLowerCase().contains(name)){
@@ -67,6 +71,7 @@ public class Program {
 
             }
         } else {
+            // search for first name
             for(Person person : people){
                 if(person.getFirstName().toLowerCase().contains(name)){
                     System.out.println(person);
@@ -82,7 +87,7 @@ public class Program {
         String sentence;
 
         System.out.println();
-
+        // check for oldest age
         if(age.equals("old")){
             sentence = " is the oldest age";
             for(Person person : people){
@@ -92,6 +97,7 @@ public class Program {
                 }
             }
         } else {
+            // check for youngest age
             sentence = " is the youngest age";
             startAge = 150;
             for(Person person : people){
@@ -106,7 +112,7 @@ public class Program {
     }
 
     public static void viewNames(){
-
+    // display all available people
         for (Person person : people){
             System.out.println("~~~~~~~~~~~~~~~~~~~");
             System.out.println(person);
