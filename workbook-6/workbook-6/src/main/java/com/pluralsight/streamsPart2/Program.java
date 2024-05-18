@@ -15,7 +15,6 @@ public class Program {
         // load all users in list
         loadUsers();
         getUserInput();
-
     }
 
     public static void getUserInput() {
@@ -119,8 +118,14 @@ public class Program {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~");
     }
     public static void calculateAverageAge(){
-        // display all available people
-        // TODO STREAMS AVERAGE
+        // returns long cast to int
+        int count = (int) people.stream().count();
+        // 0 is the identity value (the initial sum).
+        // (sum, person) -> sum + person.getAge() is the accumulator function that adds each person's age to the sum.
+        // Integer::sum is the combiner function that adds together the results from different parts of the stream.
+        int addedAges = people.stream().reduce(0, (sum, person) -> sum + person.getAge(), Integer::sum);
+        int average = addedAges / count;
+        System.out.println("~~~~ The average age is: " + average + " ~~~~");
     }
     public static void loadUsers(){
         // create Person objects & add to array
