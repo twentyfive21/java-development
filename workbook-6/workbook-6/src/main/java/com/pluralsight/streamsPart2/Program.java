@@ -1,8 +1,6 @@
 package com.pluralsight.streamsPart2;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Program {
@@ -92,16 +90,23 @@ public class Program {
     }
 
     public static void getAge(String age) {
-
-        String sentence;
-
         System.out.println();
+        List<Integer> ages = people.stream()
+                .map(Person::getAge)  //get each age from the object
+                .collect(Collectors.toList());  //convert it to a list
+
         // check for oldest age
+        // .get not recommended if optional is empty throws NoSuchElementException
         if (age.equals("old")) {
-            // TODO STREAMS WAY OLD AGE
+            Optional<Integer> maxAge = ages.stream() // use optional as it can hold any data type
+                    .max(Integer::compareTo); // find the max of each age using compare to compare objects together
+
+            System.out.println("The oldest age is: " + maxAge.get());
         } else{
             // check for youngest age
-            // TODO STREAMS WAY YOUNG
+            Optional<Integer> minAge = ages.stream() // use optional as it can hold any data type
+                    .min(Integer::compareTo); // find the max of each age using compare to compare objects together
+            System.out.println("The youngest age is: " + minAge.get());
         }
 
 
@@ -110,7 +115,6 @@ public class Program {
 
     public static void viewNames(){
     // display all available people
-        // TODO STREAMS ALL NAMES
         people.forEach(name -> {
             System.out.println("~~~~~~~~~~~~~~~~~~~~~");
             System.out.println(name);
