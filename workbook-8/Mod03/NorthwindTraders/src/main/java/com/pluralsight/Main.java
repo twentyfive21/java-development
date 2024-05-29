@@ -19,11 +19,22 @@ public class Main {
         // 2. Execute your query
         ResultSet results = statement.executeQuery(query);
         // process the results
+        System.out.println("-------------------------------------------");
         while (results.next()) {
+            String productID = results.getString("ProductID");
             String productName = results.getString("ProductName");
-            System.out.println(productName);
+            String unitPrice = results.getString("UnitPrice");
+            String inStock = results.getString("UnitsInStock");
+            System.out.printf("Product Id: %s \n" +
+                    "Name: %s\n" +
+                    "Price: %s\n" +
+                    "Stock: %s\n" +
+                    "-------------------------------------------\n"
+                    ,productID,productName,unitPrice,inStock);
         }
-    // Close the connection
-    connection.close();
+    // Close the connection always close in reverse not FIFO do LIFO
+        connection.close();
+        statement.close();
+        results.close();
     }
 }
