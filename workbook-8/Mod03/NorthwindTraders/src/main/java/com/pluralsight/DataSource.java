@@ -57,7 +57,7 @@ public class DataSource {
             dataSource.setPassword("password");
             try{
 
-                try (  // Database Connection: A connection to the MySQL database is established using the DriverManager
+                try (  // Database Connection: A connection to the MySQL database is established using Datasource
                        Connection connection = dataSource.getConnection();
                        PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ){
