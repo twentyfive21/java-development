@@ -6,11 +6,15 @@ import java.util.Scanner;
 public class TryWIthResources {
 
     public static void main(String[] args) throws ClassNotFoundException {
+        boolean running = true;
+
+        while (running){
 
         // Create a Scanner object for reading user input
         Scanner scanner = new Scanner(System.in);
         // User Input: The program prompts the user to select an option
-        System.out.print("What do you want to do?\n" +
+        System.out.println("\n~~~~~~ Welcome to Whole Foods Market! ~~~~~~~");
+        System.out.print("\nWhat do you want to do?\n" +
                 "1) Display all products\n" +
                 "2) Display all customers\n" +
                 "3) Display all categories\n" +
@@ -31,7 +35,8 @@ public class TryWIthResources {
             case "3" : query = "SELECT CategoryID,CategoryName FROM northwind.Categories ORDER BY CategoryID";
                 dataBaseChoice = "category";
                 break;
-            case "0" : System.out.println("Goodbye");
+            case "0" : System.out.println("\n!!!! Goodbye : ) Have a lovely day !!!");
+                running = false;
                 return;
             default: System.out.println("Error invalid input");
                 break;
@@ -87,23 +92,76 @@ public class TryWIthResources {
                                         ,contactName,companyName,city,country,phone);
                             }
                         } else {
+                            System.out.println("\n******************** Category Info ********************");
                             while (resultSet.next()){
-                                String contactName = resultSet.getString("ContactName");
-                                String companyName = resultSet.getString("CompanyName");
-                                String city = resultSet.getString("City");
-                                String country = resultSet.getString("Country");
-                                String phone = resultSet.getString("Phone");
+                                String categoryID = resultSet.getString("CategoryID");
+                                String categoryName = resultSet.getString("CategoryName");
                                 // Display the customer information
-                                System.out.printf("Customer Info:  \n" +
-                                                "Contact Name: %s\n" +
-                                                "Company Name: %s\n" +
-                                                "City: %s\n" +
-                                                "Country: %s\n" +
-                                                "Phone : %s\n" +
+
+                                System.out.printf("Category ID : %s\n" +
+                                                "Category Name : %s\n" +
                                                 "-------------------------------------------\n"
-                                        ,contactName,companyName,city,country,phone);
+                                        ,categoryID,categoryName);
                     }
                             // let user pick category
+                            System.out.println("What category number would you like to view?");
+                            System.out.print("Selection: ");
+                            String userPick = "";
+                            String categoryChoice = scanner.nextLine().trim();
+                            switch (categoryChoice){
+                                case "1":
+                                    userPick = "1";
+                                    break;
+                                case "2":
+                                    userPick = "2";
+                                    break;
+                                case "3":
+                                    userPick = "3";
+                                    break;
+                                case "4":
+                                    userPick = "4";
+                                    break;
+                                case "5":
+                                    userPick = "5";
+                                    break;
+                                case "6":
+                                    userPick = "6";
+                                    break;
+                                case "7":
+                                    userPick = "7";
+                                    break;
+                                case "8":
+                                    userPick = "8";
+                                    break;
+                                default: System.out.println("Error: Invalid input");
+                                    return;
+                            }
+                            try(
+                                PreparedStatement preparedStatement1 =
+                                    connection.prepareStatement("SELECT ProductID, ProductName, UnitPrice, UnitsInStock" +
+                                                " FROM northwind.Products WHERE CategoryID = ? ORDER BY ProductName;");
+                                    ){
+                                preparedStatement1.setString(1, userPick);
+                                try(
+                                        ResultSet resultSet1 = preparedStatement1.executeQuery();
+                                        ){
+                                    System.out.println("\n******************** Product Info ********************");
+                                    while (resultSet1.next()){
+                                        String productID= resultSet1.getString("ProductID");
+                                        String productName = resultSet1.getString("ProductName");
+                                        Double unitPrice = resultSet1.getDouble("UnitPrice");
+                                        String unitsInStock = resultSet1.getString("UnitsInStock");
+                                        // Display the customer information
+                                        System.out.printf("Product Info:\n" +
+                                                        "Product ID: %s\n" +
+                                                        "Product Name: %s\n" +
+                                                        "Unit Price: %,.2f\n" +
+                                                        "Units In Stock: %s\n" +
+                                                        "-------------------------------------------\n"
+                                                ,productID,productName,unitPrice,unitsInStock);
+                                    }
+                                }
+                            }
 
                 }
             }
@@ -113,4 +171,6 @@ public class TryWIthResources {
             // block including those in nested try statements
             e.printStackTrace();
         }
-}}
+}
+}
+}
