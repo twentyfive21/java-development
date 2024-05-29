@@ -21,13 +21,14 @@ public class Main {
         // process the results
         System.out.println("-------------------------------------------");
         while (results.next()) {
-            String productID = results.getString("ProductID");
+            // do by column number counting starts by 1
+            String productID = results.getString(1);
             String productName = results.getString("ProductName");
-            String unitPrice = results.getString("UnitPrice");
+            Double unitPrice = results.getDouble("UnitPrice");
             String inStock = results.getString("UnitsInStock");
             System.out.printf("Product Id: %s \n" +
                     "Name: %s\n" +
-                    "Price: %s\n" +
+                    "Price: %,.2f\n" +
                     "Stock: %s\n" +
                     "-------------------------------------------\n"
                     ,productID,productName,unitPrice,inStock);
