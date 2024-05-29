@@ -35,7 +35,7 @@ public class MainTryCatch {
                case "1" : query = "SELECT * FROM Products";
                         dataBaseChoice = "products";
                     break;
-               case "2": query = "SELECT * FROM Customers";
+               case "2": query = "SELECT * FROM northwind.Customers ORDER BY Country";
                    dataBaseChoice = "customers";
                     break;
                case "3" : System.out.println("Goodbye");
