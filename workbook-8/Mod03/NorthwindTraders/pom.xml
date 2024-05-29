@@ -16,7 +16,7 @@
 
     <dependencies>
         <!-- MySQL Driver Dependency -->
-        <!-- Old Way using Driver manager -->
+        <!-- Old Way using Driver manager only -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

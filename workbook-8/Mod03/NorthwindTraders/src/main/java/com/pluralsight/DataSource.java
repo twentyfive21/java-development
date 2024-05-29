@@ -42,13 +42,14 @@ public class DataSource {
                     break;
             }
 
-            // For name no longer needed for data source
+            // the For name class no longer needed for data source only driver manager
             // Class.forName("com.mysql.cj.jdbc.Driver");
 
             // create the connection and prepared statement in a
             // try-with-resources block
 
             // Create the datasource
+            // data source to generate connections instead of drive manager
             BasicDataSource dataSource = new BasicDataSource ();
             // Configure the datasource
             dataSource.setUrl("jdbc:mysql://localhost:3306/northwind");
@@ -145,7 +146,7 @@ public class DataSource {
                             try(
                                     PreparedStatement preparedStatement1 =
                                             connection.prepareStatement("SELECT ProductID, ProductName, UnitPrice, UnitsInStock" +
-                                                    " FROM northwind.Products WHERE CategoryID = ? ORDER BY ProductName;");
+                                                    " FROM northwind.Products WHERE CategoryID = ? ORDER BY ProductName");
                             ){
                                 preparedStatement1.setString(1, userPick);
                                 try(
