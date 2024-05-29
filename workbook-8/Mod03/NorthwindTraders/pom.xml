@@ -16,10 +16,17 @@
 
     <dependencies>
         <!-- MySQL Driver Dependency -->
+        <!-- Old Way using Driver manager -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.28</version>
+        </dependency>
+        <!-- New way with data source uses top and bottom dependency -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>2.9.0</version> <!-- Use the latest version -->
         </dependency>
     </dependencies>
 
