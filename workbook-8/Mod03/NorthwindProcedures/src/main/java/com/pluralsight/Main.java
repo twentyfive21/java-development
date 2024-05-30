@@ -47,11 +47,20 @@ public class Main {
 
     private static void getSalesByCategory(BasicDataSource dataSource) {
         System.out.print("! You have chosen to view customer order history ! ");
+        DataManager.displayCategories(dataSource);
         System.out.print("Enter Category name: ");
         String category = scanner.nextLine().trim();
         System.out.print("Enter year (2000): ");
         String year = scanner.nextLine().trim();
         DataManager.getCategoriesFromData(dataSource,category,year);
+    }
+
+    private static void getOrderHistoryCustomer(BasicDataSource dataSource) {
+        System.out.print("! You have chosen to view customer order history ! ");
+        DataManager.displayCustomerID(dataSource);
+        System.out.print("Enter ID of customer: ");
+        String id = scanner.nextLine().trim();
+        DataManager.getCustomerHistory(dataSource,id);
     }
 
     private static void getSalesByYear(BasicDataSource dataSource) {
@@ -63,14 +72,6 @@ public class Main {
         System.out.print("Enter end date (1996-07-10): ");
         String endDate = scanner.nextLine().trim();
         DataManager.getSalesByYearData(dataSource,startDate,endDate);
-    }
-
-    private static void getOrderHistoryCustomer(BasicDataSource dataSource) {
-        System.out.print("! You have chosen to view customer order history ! ");
-        System.out.print("Enter ID of customer: ");
-        String id = scanner.nextLine().trim();
-        DataManager.getCustomerHistory(dataSource,id);
-        // ShipperDataManager.displayAllShippers(dataSource);
     }
 
 
