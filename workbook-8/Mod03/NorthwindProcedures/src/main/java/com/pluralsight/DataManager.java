@@ -153,7 +153,7 @@ public class DataManager {
 
             try( // Database Connection: A connection to the MySQL database is established using Datasource
                  Connection connection = dataSource.getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement("SELECT CategoryName,Description FROM northwind.Categories;")
+                 PreparedStatement preparedStatement = connection.prepareStatement("SELECT CategoryName,Description FROM northwind.Categories")
             ){
                 try (
                         ResultSet resultSet = preparedStatement.executeQuery();
@@ -192,7 +192,7 @@ public class DataManager {
 
             try( // Database Connection: A connection to the MySQL database is established using Datasource
                  Connection connection = dataSource.getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement("SELECT CustomerID,CompanyName,ContactName FROM northwind.Customers;")
+                 PreparedStatement preparedStatement = connection.prepareStatement("SELECT CustomerID,CompanyName,ContactName FROM northwind.Customers")
             ){
                 try (
                         ResultSet resultSet = preparedStatement.executeQuery();
@@ -205,7 +205,7 @@ public class DataManager {
                         do {
                             String customerID = resultSet.getString("CustomerID");
                             String companyName = resultSet.getString("CompanyName");
-                            String contactName = resultSet.getString("ContactName ");
+                            String contactName = resultSet.getString("ContactName");
                             // Display the customer information
                             System.out.printf("Customer Info:\n" +
                                             "Customer ID: %s\n" +

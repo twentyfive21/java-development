@@ -48,9 +48,9 @@ public class Main {
     private static void getSalesByCategory(BasicDataSource dataSource) {
         System.out.print("! You have chosen to view customer order history ! ");
         DataManager.displayCategories(dataSource);
-        System.out.print("Enter Category name: ");
+        System.out.print("Enter Category name to search by: ");
         String category = scanner.nextLine().trim();
-        System.out.print("Enter year (2000): ");
+        System.out.print("Enter year in format (2000) to search by: ");
         String year = scanner.nextLine().trim();
         DataManager.getCategoriesFromData(dataSource,category,year);
     }
@@ -58,7 +58,7 @@ public class Main {
     private static void getOrderHistoryCustomer(BasicDataSource dataSource) {
         System.out.print("! You have chosen to view customer order history ! ");
         DataManager.displayCustomerID(dataSource);
-        System.out.print("Enter ID of customer: ");
+        System.out.print("Enter ID of customer to search by: ");
         String id = scanner.nextLine().trim();
         DataManager.getCustomerHistory(dataSource,id);
     }
