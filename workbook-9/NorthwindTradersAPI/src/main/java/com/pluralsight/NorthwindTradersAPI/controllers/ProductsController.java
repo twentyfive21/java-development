@@ -14,21 +14,21 @@ public class ProductsController {
     @RequestMapping(path="/products", method= RequestMethod.GET)
     public List<Product> getAllProducts(){
 
-        List<Product> allProducts = new ArrayList<>();
-        allProducts.add(new Product(1, "Candy", 2, 3.99));
-        allProducts.add(new Product(2, "Grapes", 1, 6.99));
-
-        return allProducts;
+//        List<Product> allProducts = new ArrayList<>();
+//        allProducts.add(new Product(1, "Candy", 2, 3.99));
+//        allProducts.add(new Product(2, "Grapes", 1, 6.99));
+//
+//        return allProducts;
     }
 
     @RequestMapping(path="/products/{id}", method=RequestMethod.GET)
     public Product getProductById(@PathVariable int id){
-
-        for(Product product : getAllProducts()){
-            if(product.getProductId() == id){
-                return product;
-            }
-        }
-        return null;
+//
+//        for(Product product : getAllProducts()){
+//            if(product.getProductId() == id){
+//                return product;
+//            }
+//        }
+//        return null;
     }
 }
