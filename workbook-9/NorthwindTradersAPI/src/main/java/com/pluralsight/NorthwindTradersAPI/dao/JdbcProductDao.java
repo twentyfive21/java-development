@@ -33,7 +33,12 @@ public class JdbcProductDao implements ProductDao{
 
                             ){
                         while (resultSet.next()){
-
+                            int productId = resultSet.getInt("ProductID");
+                            String productName = resultSet.getString("ProductName");
+                            int categoryId = resultSet.getInt("CategoryID");
+                            double unitPrice = resultSet.getDouble("UnitPrice");
+                            Product product = new Product(productId,productName,categoryId,unitPrice);
+                            allProducts.add(product);
                         }
                     }
             }
@@ -41,11 +46,37 @@ public class JdbcProductDao implements ProductDao{
             e.printStackTrace();
             System.out.println("Error in getting all products");
         }
-//        return List.of();
+        return allProducts;
     }
 
     @Override
     public Product getById(int id) {
-//        return null;
+        Product productMatch = null;
+        try{
+            try(
+                    Connection connection = dataSource.getConnection();
+                    PreparedStatement preparedStatement =
+                            connection.prepareStatement("SELECT * FROM Products WHERE ProductID = ?;");
+                    ){
+                    preparedStatement.setInt(1, id);
+                    try(
+                            ResultSet resultSet = preparedStatement.executeQuery();
+                            ){
+                        while(resultSet.next()){
+                            int productId = resultSet.getInt("ProductID");
+                            String productName = resultSet.getString("ProductName");
+                            int categoryId = resultSet.getInt("CategoryID");
+                            double unitPrice = resultSet.getDouble("UnitPrice");
+                            Product product = new Product(productId,productName,categoryId,unitPrice);
+                            productMatch = product;
+                        }
+                    }
+            }
+        }catch (SQLException e){
+            System.out.println("Error getting product by id");
+            e.printStackTrace();
+        }
+        return productMatch;
     }
+
 }
