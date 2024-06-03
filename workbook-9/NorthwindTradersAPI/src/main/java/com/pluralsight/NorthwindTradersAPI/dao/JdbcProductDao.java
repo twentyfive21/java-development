@@ -79,4 +79,41 @@ public class JdbcProductDao implements ProductDao{
         return productMatch;
     }
 
+    @Override
+    public Product insert(Product product) {
+        try{
+            try(
+                    Connection connection = dataSource.getConnection();
+                    // "Chips",5,5.99
+                    PreparedStatement preparedStatement =
+                            connection.prepareStatement("INSERT INTO Products (ProductName,CategoryID,unitPrice)VALUES(?,?,?);",
+                                    PreparedStatement.RETURN_GENERATED_KEYS);
+                    ){
+                    preparedStatement.setString(1,product.getProductName());
+                    preparedStatement.setInt(2,product.getCategoryId());
+                    preparedStatement.setDouble(3,product.getUnitPrice());
+
+                    int affectedRows = preparedStatement.executeUpdate();
+                    try(
+                            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+                            ){
+                        if(resultSet.next()){
+                            // In JDBC, when retrieving generated keys using
+                            // PreparedStatement.getGeneratedKeys(), the ResultSet
+                            // returned often uses column indexes rather than column names.
+                            int productId = resultSet.getInt(1);
+                            product.setProductId(productId);
+                        }
+                    }
+
+            }
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("Error adding to product table");
+        }
+        return product;
+    }
+
 }

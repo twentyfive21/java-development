@@ -76,4 +76,35 @@ public class JdbcCategoryDao implements CategoryDao {
         }
         return categoryMatch;
     }
+
+    @Override
+    public Category insert(Category category) {
+        try{
+            try(
+                    Connection connection = dataSource.getConnection();
+                    PreparedStatement preparedStatement =
+                            connection.prepareStatement("INSERT INTO Categories (CategoryName) VALUES (?);",
+                                    PreparedStatement.RETURN_GENERATED_KEYS);
+                    ){
+                        preparedStatement.setString(1, category.getCategoryName());
+                        int affectedRows = preparedStatement.executeUpdate();
+                        try(
+                                ResultSet resultSet = preparedStatement.getGeneratedKeys();
+                                ){
+                            if(resultSet.next()){
+                                // In JDBC, when retrieving generated keys using
+                                // PreparedStatement.getGeneratedKeys(), the ResultSet
+                                // returned often uses column indexes rather than column names.
+                                int categoryId = resultSet.getInt(1);
+                                category.setCategoryId(categoryId);
+                            }
+                        }
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("Error inserting to category table");
+        }
+    return category;
+    }
 }
