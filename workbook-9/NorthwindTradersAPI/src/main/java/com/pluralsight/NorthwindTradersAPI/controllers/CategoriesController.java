@@ -2,6 +2,7 @@ package com.pluralsight.NorthwindTradersAPI.controllers;
 
 import com.pluralsight.NorthwindTradersAPI.dao.CategoryDao;
 import com.pluralsight.NorthwindTradersAPI.models.Category;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -50,6 +51,14 @@ public class CategoriesController {
     public void update(@PathVariable int id,@RequestBody Category category){
         categoryDao.update(id,category);
     }
+
+    @RequestMapping(path = "/categories/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id){
+        categoryDao.delete(id);
+    }
+
+
 
 
 }

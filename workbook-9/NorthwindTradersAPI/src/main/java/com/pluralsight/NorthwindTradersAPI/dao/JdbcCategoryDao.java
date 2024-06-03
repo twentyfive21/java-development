@@ -127,4 +127,21 @@ public class JdbcCategoryDao implements CategoryDao {
             System.out.println("Error updating category");
         }
     }
+
+    @Override
+    public void delete(int id) {
+    try{
+        try(
+                Connection connection = dataSource.getConnection();
+                PreparedStatement preparedStatement =
+                        connection.prepareStatement("DELETE FROM Categories WHERE CategoryID = ?;");
+                ){
+                    preparedStatement.setInt(1,id);
+                    preparedStatement.executeUpdate();
+        }
+    }catch (SQLException e){
+        e.printStackTrace();
+        System.out.println("Error deleting from category table");
+    }
+    }
 }
